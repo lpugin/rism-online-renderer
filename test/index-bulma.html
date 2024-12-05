@@ -15,18 +15,12 @@
 <body>
   <div id="json-ld-container" class="panel"></div>
 
-<script src="../dist/ro.js"></script>
-<script>
+  <script src="../rism-online-renderer.js"></script>
+  <script>
+    const renderer = new RISMOnline.Renderer( 'https://rism.online/sources/453012854', 'json-ld-container' );
+    renderer.render( 'fr' );
 
-  fetch( "https://rism.online/sources/453012854", {
-    headers: { "Accept": "application/ld+json" }
-  } ).then( response => response.json() ).then( data =>
-  {
-    const context = new Source( data );
-    const div = document.getElementById("json-ld-container");
-    div.appendChild( context.toHTML( "de" ) );
-  } );
-
-</script>
+  </script>
 </body>
+
 </html>
