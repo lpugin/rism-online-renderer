@@ -6,6 +6,20 @@ See:
 * https://lpugin.github.io/rism-online-renderer/test/index.html
 * https://lpugin.github.io/rism-online-renderer/test/index-bulma.html
 
+## Using it
+
+```html
+<script src="../rism-online-renderer.js"></script>
+<script>
+  const renderer = new RISMOnline.Renderer( 'https://rism.online/sources/453012854', 'json-ld-container' );
+  renderer.render( 'en' );
+</script>
+```
+
+Where `json-ld-container` is the `@id` of a `div` to include the rendering.
+
+The CSS generated from `rism.scss` should be included.
+
 ## Building
 
 Processing TypeScript with:
