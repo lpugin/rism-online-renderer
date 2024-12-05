@@ -1,0 +1,82 @@
+/*
+// Bulma example
+@import "node_modules/bulma/bulma";
+@import "node_modules/bulma/sass/utilities";
+$padding: 8px;
+$margin: 8px;
+$section-color: $info;
+$label-text-color: white;
+$source-color: $primary;
+$column-width: 200px
+*/
+div.source {
+  margin: 8px;
+}
+div.source > div.label,
+div.source > div.labelledlink a div {
+  background-color: black;
+  color: white;
+  border: 1px black solid;
+  padding: 8px;
+}
+div.source div.labelledlink a div {
+  text-decoration: underline;
+}
+div.source > div:not(:empty) {
+  border: 1px grey solid;
+  margin-bottom: 8px;
+}
+div.source > div:not(:empty) > div {
+  padding: 8px;
+}
+div.source > div:not(:empty) > div.label,
+div.source > div:not(:empty) > div.labelledlink,
+div.source > div:not(:empty) > div.labelledlink a div {
+  background-color: grey;
+  color: white;
+}
+div.source > div:not(:empty) > div.labelledlink a div {
+  text-decoration: underline;
+}
+div.source div.sourcelabel {
+  padding: 8px;
+}
+div.source div.recordhistory div {
+  display: flex;
+  flex-direction: row;
+}
+div.source div.recordhistory div div:first-child {
+  min-width: 200px;
+}
+div.source div.recordhistory div div.label {
+  font-style: italic;
+}
+div.source div.contents div.summaryitem {
+  display: flex;
+  flex-direction: row;
+}
+div.source div.contents div.summaryitem div:first-child {
+  min-width: 200px;
+}
+div.source div.contents div.summaryitem div.label {
+  font-style: italic;
+}
+div.source div.materialgroups div.materialgroupitem div.materialsummary,
+div.source div.materialgroups div.exemplarsitem div.materialsummary,
+div.source div.exemplars div.materialgroupitem div.materialsummary,
+div.source div.exemplars div.exemplarsitem div.materialsummary {
+  display: flex;
+  flex-direction: row;
+}
+div.source div.materialgroups div.materialgroupitem div.materialsummary div:first-child,
+div.source div.materialgroups div.exemplarsitem div.materialsummary div:first-child,
+div.source div.exemplars div.materialgroupitem div.materialsummary div:first-child,
+div.source div.exemplars div.exemplarsitem div.materialsummary div:first-child {
+  min-width: 200px;
+}
+div.source div.materialgroups div.materialgroupitem div.materialsummary div.label,
+div.source div.materialgroups div.exemplarsitem div.materialsummary div.label,
+div.source div.exemplars div.materialgroupitem div.materialsummary div.label,
+div.source div.exemplars div.exemplarsitem div.materialsummary div.label {
+  font-style: italic;
+}
