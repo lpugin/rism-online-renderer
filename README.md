@@ -2,6 +2,10 @@
 
 TypeScript code for rendering JSON-LD pulled from RISM Online
 
+See:
+* https://lpugin.github.io/rism-online-renderer/test/index.html
+* https://lpugin.github.io/rism-online-renderer/test/index-bulma.html
+
 ## Building
 
 Processing TypeScript with:
