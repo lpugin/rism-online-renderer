@@ -93,7 +93,7 @@ class URI extends ROElement {
         return a;
     }
 }
-class Label extends ROElement {
+class I18n extends ROElement {
     constructor(initialMap) {
         super();
         this.map = initialMap;
@@ -124,7 +124,7 @@ class LabelledLink extends ROElement {
         super();
         this.hide("label");
         this.hide("id");
-        this.label = new Label(label);
+        this.label = new I18n(label);
         this.id = new URI(id);
     }
     toHTML(lang) {
@@ -138,7 +138,7 @@ class LabelledLink extends ROElement {
     }
 }
 /////////////////////////////
-class SourceLabel extends Label {
+class SourceLabel extends I18n {
 }
 class Source extends ROElement {
     constructor(data) {
@@ -166,7 +166,7 @@ class ContentType extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.type = data.type;
         }
     }
@@ -175,7 +175,7 @@ class Contents extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.sectionLabel = new Label(data.sectionLabel);
+            this.sectionLabel = new I18n(data.sectionLabel);
             this.summary = (data.summary || []).map((item) => new SummaryItem(item));
             this.subjects = new Subjects(data.subjects);
         }
@@ -207,7 +207,7 @@ class Exemplars extends ROElement {
         if (data) {
             this.id = new URI(data.id);
             this.type = data.type;
-            this.sectionLabel = new Label(data.sectionLabel);
+            this.sectionLabel = new I18n(data.sectionLabel);
             this.items = (data.items || []).map((item) => new ExemplarsItem(item));
         }
     }
@@ -219,8 +219,8 @@ class ExemplarsItem extends ROElement {
         if (data) {
             this.id = new URI(data.id);
             this.type = data.type;
-            this.sectionLabel = new Label(data.sectionLabel);
-            this.label = new Label(data.label);
+            this.sectionLabel = new I18n(data.sectionLabel);
+            this.label = new I18n(data.label);
             this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
             this.notes = (data.notes || []).map((note) => new NotesItem(note));
             this.heldBy = new RelatedTo(data.heldBy);
@@ -231,7 +231,7 @@ class MaterialGroupItem extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
         }
     }
@@ -240,7 +240,7 @@ class MaterialGroups extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.sectionLabel = new Label(data.sectionLabel);
+            this.sectionLabel = new I18n(data.sectionLabel);
             this.items = (data.items || []).map((item) => new MaterialGroupItem(item));
         }
     }
@@ -249,32 +249,32 @@ class MaterialSummary extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.value = new MaterialSummaryValue(data.value);
             this.type = data.type;
         }
     }
 }
-class MaterialSummaryValue extends Label {
+class MaterialSummaryValue extends I18n {
 }
 class NotesItem extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.value = new NotesItemValue(data.value);
         }
     }
 }
-class NotesItemValue extends Label {
+class NotesItemValue extends I18n {
 }
 class RecordHistory extends ROElement {
     constructor(data) {
         super();
         if (data) {
             this.type = data.type;
-            this.createdLabel = new Label(data.createdLabel);
-            this.updatedLabel = new Label(data.updatedLabel);
+            this.createdLabel = new I18n(data.createdLabel);
+            this.updatedLabel = new I18n(data.updatedLabel);
             this.created = data.created;
             this.updated = data.updated;
         }
@@ -300,7 +300,7 @@ class ReferencesNotes extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.sectionLabel = new Label(data.sectionLabel);
+            this.sectionLabel = new I18n(data.sectionLabel);
             this.type = data.type;
             this.notes = (data.notes || []).map((note) => new NotesItem(note));
         }
@@ -310,7 +310,7 @@ class Relationships extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.sectionLabel = new Label(data.sectionLabel);
+            this.sectionLabel = new I18n(data.sectionLabel);
             this.items = (data.items || []).map((item) => new RelationshipsItem(item));
         }
     }
@@ -339,7 +339,7 @@ class Role extends ROElement {
         this.hide("value");
         this.hide("id");
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.value = data.value;
             this.id = data.id;
         }
@@ -359,7 +359,7 @@ class SourceType extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.type = data.type;
         }
     }
@@ -378,7 +378,7 @@ class Subjects extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.sectionLabel = new Label(data.sectionLabel);
+            this.sectionLabel = new I18n(data.sectionLabel);
             this.items = (data.items || []).map((item) => new SubjectsItem(item));
         }
     }
@@ -389,7 +389,7 @@ class SubjectsItem extends ROElement {
         if (data) {
             this.id = new URI(data.id);
             this.type = data.type;
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.value = data.value;
         }
     }
@@ -398,12 +398,12 @@ class SummaryItem extends ROElement {
     constructor(data) {
         super();
         if (data) {
-            this.label = new Label(data.label);
+            this.label = new I18n(data.label);
             this.value = new SummaryValue(data.value);
             this.type = data.type;
         }
     }
 }
-class SummaryValue extends Label {
+class SummaryValue extends I18n {
 }
 //# sourceMappingURL=ro.js.map
