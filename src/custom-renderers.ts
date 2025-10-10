@@ -25,7 +25,7 @@ export class CustomSourceRenderer {
                 headers: { Accept: "application/ld+json" },
             });
             const data = await response.json() as SourceTypes.SourceData;
-            const context = new Sources.Source(data);
+            const source = new Sources.Source(data);
 
             const container = document.getElementById(this.containerId);
 
@@ -34,7 +34,7 @@ export class CustomSourceRenderer {
                 return;
             }
 
-            container.appendChild(renderSource(context));
+            container.appendChild(renderSource(source));
 
         } catch (error) {
             console.error("Failed to fetch or render JSON-LD:", error);
