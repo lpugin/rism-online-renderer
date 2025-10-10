@@ -12,12 +12,27 @@
 </head>
 
 <body>
-  <div id="json-ld-container" class="panel"></div>
+  <div id="source" class="panel"></div>
 
   <script src="../rism-online-renderer.js"></script>
   <script>
-    const renderer = new RISMOnline.Renderer( 'https://rism.online/sources/453012854', 'json-ld-container' );
-    renderer.render( 'en' );
+    const srcRenderer = new RISMOnline.SourceRenderer( 'https://rism.online/sources/453012854', 'source' );
+    srcRenderer.render( 'fr' );
+  </script>
+
+  <div id="work" class="panel"></div>
+
+  <script>
+    const workRenderer = new RISMOnline.WorkRenderer( './work.json', 'work' );
+    workRenderer.render( 'fr' );
+  </script>
+
+  <div id="custom-source" class="panel"></div>
+
+  <script src="../rism-online-custom-renderer.js"></script>
+  <script>
+    const customSrcRenderer = new RISMOnlineCustom.CustomSourceRenderer( 'https://rism.online/sources/453012854', 'custom-source' );
+    customSrcRenderer.render( 'fr' );
   </script>
 </body>
 

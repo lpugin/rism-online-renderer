@@ -13,7 +13,7 @@ export interface URIData {
     label?: I18nData;
 }
 
-export namespace Sources {
+export namespace SourceTypes {
 
     /* ──────────────────────────────
         ROOT SOURCE OBJECT
@@ -163,10 +163,89 @@ export namespace Sources {
         type?: string[];
     }
 
-
     export interface ReferencesNotesData {
         sectionLabel?: I18nData;
         type?: string;
         notes?: NotesItemData[];
     }
+}
+
+export namespace WorkTypes {
+
+    /* ──────────────────────────────
+        ROOT WORK OBJECT
+    ─────────────────────────────── */
+
+    export interface WorkData {
+        "@context"?: string;
+        id: string;
+        type?: string;
+        label?: I18nData;
+        creator?: CreatorData;
+        summary?: SummaryData[];
+        partOf?: PartOfData;
+        recordHistory?: RecordHistoryData;
+        //incipits?: IncipitsData;
+        //externalAuthorities?: ExternalAuthoritiesData;
+        //formOfWork?: FormOfWorkData;
+        //relationships?: RelationshipsData;
+    }
+
+    export interface CreatedData {
+        label?: I18nData;
+        type?: string;
+    }
+
+    export interface CreatorData {
+        role?: RoleData;
+        relatedTo?: RelatedToData;
+    }
+
+    export interface ItemsData {
+        relationshipType?: string;
+        relatedTo?: RelatedToData;
+        workNumber?: string;
+    }
+
+    export interface PartOfData {
+        label?: I18nData;
+        type?: string;
+        items?: ItemsData;
+    }
+
+    export interface RecordHistoryData {
+        type?: string;
+        created?: CreatedData;
+        updated?: UpdatedData;
+    }
+
+    export interface RelatedToData {
+        id: string;
+        label: I18nData;
+        type?: string;
+        typeLabel?: I18nData;
+        status?: StatusData;
+    }
+
+    export interface RoleData {
+        label?: I18nData;
+        value?: string;
+        id?: string;
+    }
+
+    export interface StatusData {
+        label?: I18nData;
+        value?: string;
+    }
+
+    export interface SummaryData {
+        label?: I18nData;
+        value?: I18nData;
+    }
+
+    export interface UpdatedData {
+        label?: I18nData;
+        type?: string;
+    }
+
 }

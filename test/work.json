@@ -1,0 +1,1336 @@
+{
+  "@context": "https://dev.rism.online/api/v1/work.json",
+  "id": "https://dev.rism.online/works/32206",
+  "type": "rism:Work",
+  "label": {
+    "none": [
+      "Verleih uns Frieden  MWV A 11"
+    ]
+  },
+  "creator": {
+    "role": {
+      "label": {
+        "pl": [
+          "Kompozytor / Autor"
+        ],
+        "en": [
+          "Composer/Author"
+        ],
+        "it": [
+          "Compositore/Autore"
+        ],
+        "fr": [
+          "Compositeur/Auteur"
+        ],
+        "pt": [
+          "Compositor/Autor"
+        ],
+        "de": [
+          "Komponist/Autor"
+        ],
+        "es": [
+          "Compositor/Autor"
+        ]
+      },
+      "value": "relators:cre",
+      "id": "relators:cre"
+    },
+    "relatedTo": {
+      "id": "https://dev.rism.online/people/88790",
+      "label": {
+        "none": [
+          "Mendelssohn Bartholdy, Felix (1809-1847)"
+        ]
+      },
+      "type": "rism:Person"
+    }
+  },
+  "summary": [
+    {
+      "label": {
+        "pl": [
+          "Tonacja lub modus"
+        ],
+        "en": [
+          "Key or mode"
+        ],
+        "it": [
+          "Tonalità, modo"
+        ],
+        "fr": [
+          "Tonalité, mode"
+        ],
+        "pt": [
+          "Tonalidade, modo"
+        ],
+        "de": [
+          "Tonart, Modus"
+        ],
+        "es": [
+          "Tonalidad o modo"
+        ]
+      },
+      "value": {
+        "pl": [
+          "Es-dur"
+        ],
+        "en": [
+          "E♭ major"
+        ],
+        "it": [
+          "Mi♭ maggiore"
+        ],
+        "fr": [
+          "Mi♭ majeur"
+        ],
+        "pt": [
+          "Mi bemol maior"
+        ],
+        "de": [
+          "Es-Dur"
+        ],
+        "es": [
+          "Mi bemol Mayor"
+        ]
+      }
+    },
+    {
+      "label": {
+        "pl": [
+          "Podsumowanie obsady"
+        ],
+        "en": [
+          "Scoring summary"
+        ],
+        "it": [
+          "Organico sintetico"
+        ],
+        "fr": [
+          "Instrumentation condensée"
+        ],
+        "pt": [
+          "Sintese da formação instrumental"
+        ],
+        "de": [
+          "Besetzungshinweis"
+        ],
+        "es": [
+          "Resumen de Plantilla/Orgánico"
+        ]
+      },
+      "value": {
+        "none": [
+          "V (4), orch"
+        ]
+      }
+    },
+    {
+      "label": {
+        "pl": [
+          "Incipit tekstowy"
+        ],
+        "en": [
+          "Text incipit"
+        ],
+        "it": [
+          "Incipit testuale"
+        ],
+        "fr": [
+          "Incipit du texte"
+        ],
+        "pt": [
+          "Incipit literário"
+        ],
+        "de": [
+          "Textincipit"
+        ],
+        "es": [
+          "Íncipit literario"
+        ]
+      },
+      "value": {
+        "none": [
+          "Verleih uns Frieden gnädiglich"
+        ]
+      }
+    },
+    {
+      "label": {
+        "pl": [
+          "Alternatywny tytuł dzieła"
+        ],
+        "en": [
+          "Alternative work title"
+        ],
+        "it": [
+          "Titolo alternativo dell'opera"
+        ],
+        "fr": [
+          "Titre alternatif"
+        ],
+        "pt": [
+          "Título alternativo da obra"
+        ],
+        "de": [
+          "Alternativer Werktitel"
+        ],
+        "es": [
+          "Título alternativo"
+        ]
+      },
+      "value": {
+        "pl": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ],
+        "en": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ],
+        "it": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ],
+        "fr": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ],
+        "pt": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ],
+        "de": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ],
+        "es": [
+          "Choral / Gebet „Verleih uns Frieden“ / „Da nobis pacem, Domine“",
+          "Da nobis pacem Domine",
+          "O salutaris hostia",
+          "Gebet",
+          "Verleih uns Frieden",
+          "Da nobis pacem",
+          "Gebet nach Luther'schen Worten",
+          "Dona nobis pacem Domine"
+        ]
+      }
+    },
+    {
+      "label": {
+        "pl": [
+          "Daty"
+        ],
+        "en": [
+          "Dates"
+        ],
+        "it": [
+          "Date"
+        ],
+        "fr": [
+          "Dates"
+        ],
+        "pt": [
+          "Datas"
+        ],
+        "de": [
+          "Datierungen"
+        ],
+        "es": [
+          "Fechas"
+        ]
+      },
+      "value": {
+        "none": [
+          "1831 (10. Februar 1831)"
+        ]
+      }
+    },
+    {
+      "label": {
+        "pl": [
+          "RISM ID"
+        ],
+        "en": [
+          "RISM ID number"
+        ],
+        "it": [
+          "Numero documento RISM"
+        ],
+        "fr": [
+          "No. RISM"
+        ],
+        "pt": [
+          "Número ID RISM"
+        ],
+        "de": [
+          "RISM Dokumentnummer"
+        ],
+        "es": [
+          "Número de ID de RISM"
+        ]
+      },
+      "value": {
+        "none": [
+          "works/32206"
+        ]
+      }
+    }
+  ],
+  "partOf": {
+    "label": {
+      "pl": [
+        "Jest częścią…"
+      ],
+      "en": [
+        "Item part of"
+      ],
+      "it": [
+        "Fa parte di"
+      ],
+      "fr": [
+        "Fait partie de"
+      ],
+      "pt": [
+        "Item parte de"
+      ],
+      "de": [
+        "In"
+      ],
+      "es": [
+        "Ítem integrante de"
+      ]
+    },
+    "type": "rism:PartOfSection",
+    "items": [
+      {
+        "relationshipType": "rism:PrimaryPartOf",
+        "relatedTo": {
+          "id": "https://dev.rism.online/publications/30025296",
+          "label": {
+            "none": [
+              "Felix Mendelssohn Bartholdy - thematisch-systematisches Verzeichnis der musikalischen Werke (MWV)"
+            ]
+          },
+          "type": "rism:Publication",
+          "typeLabel": {
+            "pl": [
+              "Katalog dzieł"
+            ],
+            "en": [
+              "Work catalog"
+            ],
+            "it": [
+              "Catalogo delle opere"
+            ],
+            "fr": [
+              "Catalogue des œuvres"
+            ],
+            "pt": [
+              "Catálogo da obra"
+            ],
+            "de": [
+              "Werkkatalog"
+            ],
+            "es": [
+              "Catálogos de trabajo"
+            ]
+          },
+          "status": {
+            "label": {
+              "pl": [
+                "Kompletne"
+              ],
+              "en": [
+                "Completed"
+              ],
+              "it": [
+                "Completato"
+              ],
+              "fr": [
+                "Terminé"
+              ],
+              "pt": [
+                "Concluído"
+              ],
+              "de": [
+                "Abgeschlossen"
+              ],
+              "es": [
+                "Completado"
+              ]
+            },
+            "value": "completed"
+          }
+        },
+        "workNumber": "MWV A 11"
+      }
+    ]
+  },
+  "recordHistory": {
+    "type": "rism:RecordHistory",
+    "created": {
+      "label": {
+        "pl": [
+          "Data utworzenia"
+        ],
+        "en": [
+          "Created on"
+        ],
+        "it": [
+          "Data di creazione"
+        ],
+        "fr": [
+          "Date de création"
+        ],
+        "pt": [
+          "Criado em"
+        ],
+        "de": [
+          "Erstellungsdatum"
+        ],
+        "es": [
+          "Fecha de creación"
+        ]
+      },
+      "value": "2023-04-26T06:31:48Z"
+    },
+    "updated": {
+      "label": {
+        "pl": [
+          "Ostatnia modyfikacja"
+        ],
+        "en": [
+          "Last modification"
+        ],
+        "it": [
+          "Ultima modifica"
+        ],
+        "fr": [
+          "Dernière modification"
+        ],
+        "pt": [
+          "Última modificação"
+        ],
+        "de": [
+          "Letzte Änderung"
+        ],
+        "es": [
+          "Fecha de modificación"
+        ]
+      },
+      "value": "2025-09-08T11:23:45Z"
+    }
+  },
+  "incipits": {
+    "id": "https://dev.rism.online/works/32206/incipits",
+    "sectionLabel": {
+      "pl": [
+        "Incipity"
+      ],
+      "en": [
+        "Incipits"
+      ],
+      "it": [
+        "Incipit"
+      ],
+      "fr": [
+        "Incipits"
+      ],
+      "pt": [
+        "Incipit"
+      ],
+      "de": [
+        "Incipits"
+      ],
+      "es": [
+        "Íncipits"
+      ]
+    },
+    "type": "rism:WorkIncipitsSection",
+    "items": [
+      {
+        "id": "https://dev.rism.online/works/32206/incipits/1.1.1",
+        "type": "rism:Incipit",
+        "label": {
+          "none": [
+            "1.1.1 Andante"
+          ]
+        },
+        "summary": [
+          {
+            "label": {
+              "pl": [
+                "Tytuł części, tempo"
+              ],
+              "en": [
+                "Title of movement, tempo"
+              ],
+              "it": [
+                "Intestazione, tempo"
+              ],
+              "fr": [
+                "Titre, tempo"
+              ],
+              "pt": [
+                "Título do movimento, tempo"
+              ],
+              "de": [
+                "Satztitel, Tempo"
+              ],
+              "es": [
+                "Título del movimiento, tempo"
+              ]
+            },
+            "value": {
+              "none": [
+                "Andante"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Tonacja lub modus"
+              ],
+              "en": [
+                "Key or mode"
+              ],
+              "it": [
+                "Tonalità, modo"
+              ],
+              "fr": [
+                "Tonalité, mode"
+              ],
+              "pt": [
+                "Tonalidade, modo"
+              ],
+              "de": [
+                "Tonart, Modus"
+              ],
+              "es": [
+                "Tonalidad o modo"
+              ]
+            },
+            "value": {
+              "pl": [
+                "Es-dur"
+              ],
+              "en": [
+                "E♭ major"
+              ],
+              "it": [
+                "Mi♭ maggiore"
+              ],
+              "fr": [
+                "Mi♭ majeur"
+              ],
+              "pt": [
+                "Mi bemol maior"
+              ],
+              "de": [
+                "Es-Dur"
+              ],
+              "es": [
+                "Mi bemol Mayor"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Klucz"
+              ],
+              "en": [
+                "Clef"
+              ],
+              "it": [
+                "Chiave"
+              ],
+              "fr": [
+                "Clé"
+              ],
+              "pt": [
+                "Clave"
+              ],
+              "de": [
+                "Schlüssel"
+              ],
+              "es": [
+                "Clave"
+              ]
+            },
+            "value": {
+              "none": [
+                "F-4"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Metrum"
+              ],
+              "en": [
+                "Time signature"
+              ],
+              "it": [
+                "Misura"
+              ],
+              "fr": [
+                "Indication de mesure"
+              ],
+              "pt": [
+                "Compasso"
+              ],
+              "de": [
+                "Metrum"
+              ],
+              "es": [
+                "Indicación de compás"
+              ]
+            },
+            "value": {
+              "none": [
+                "3/4"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Głos/instrument"
+              ],
+              "en": [
+                "Voice/instrument"
+              ],
+              "it": [
+                "Voce/strumento"
+              ],
+              "fr": [
+                "Voix/instrument"
+              ],
+              "pt": [
+                "Voz/instrumento"
+              ],
+              "de": [
+                "Besetzung"
+              ],
+              "es": [
+                "Voz/instrumento"
+              ]
+            },
+            "value": {
+              "none": [
+                "vlc"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Znaki przykluczowe"
+              ],
+              "en": [
+                "Key signature"
+              ],
+              "it": [
+                "Armatura di chiave"
+              ],
+              "fr": [
+                "Armure"
+              ],
+              "pt": [
+                "Armadura de clave"
+              ],
+              "de": [
+                "Akzidentien"
+              ],
+              "es": [
+                "Armadura de clave"
+              ]
+            },
+            "value": {
+              "none": [
+                "bBEA"
+              ]
+            }
+          }
+        ],
+        "rendered": [
+          {
+            "format": "image/svg+xml",
+            "data": ""
+          },
+          {
+            "format": "audio/midi",
+            "data": ""
+          },
+          {
+            "format": "image/png",
+            "url": "https://dev.rism.online/works/32206/incipits/1.1.1/png"
+          }
+        ],
+        "encodings": [
+          {
+            "label": {
+              "pl": [
+                "Kod Plaine and Easie"
+              ],
+              "en": [
+                "Plaine and Easie code"
+              ],
+              "it": [
+                "Codice Plaine and Easie"
+              ],
+              "fr": [
+                "Code Plaine and Easie"
+              ],
+              "pt": [
+                "Código Plaine and Easie"
+              ],
+              "de": [
+                "Plaine and Easie Code"
+              ],
+              "es": [
+                "Código Plaine and Easie"
+              ]
+            },
+            "format": "application/json",
+            "data": {
+              "clef": "F-4",
+              "keysig": "bBEA",
+              "timesig": "3/4",
+              "key": "E|b",
+              "data": "8-{,,BGB,EF}/2G8{FG}/{AECE'CbD}/4.E"
+            }
+          },
+          {
+            "label": {
+              "none": [
+                "MEI"
+              ]
+            },
+            "format": "application/mei+xml",
+            "url": "https://dev.rism.online/works/32206/incipits/1.1.1/mei"
+          }
+        ],
+        "properties": {
+          "clef": "F-4",
+          "keysig": "bBEA",
+          "timesig": "3/4",
+          "notation": "8-{,,BGB,EF}/2G8{FG}/{AECE'CbD}/4.E"
+        }
+      },
+      {
+        "id": "https://dev.rism.online/works/32206/incipits/1.1.2",
+        "type": "rism:Incipit",
+        "label": {
+          "none": [
+            "1.1.2 Andante"
+          ]
+        },
+        "summary": [
+          {
+            "label": {
+              "pl": [
+                "Tytuł części, tempo"
+              ],
+              "en": [
+                "Title of movement, tempo"
+              ],
+              "it": [
+                "Intestazione, tempo"
+              ],
+              "fr": [
+                "Titre, tempo"
+              ],
+              "pt": [
+                "Título do movimento, tempo"
+              ],
+              "de": [
+                "Satztitel, Tempo"
+              ],
+              "es": [
+                "Título del movimiento, tempo"
+              ]
+            },
+            "value": {
+              "none": [
+                "Andante"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Incipit tekstowy"
+              ],
+              "en": [
+                "Text incipit"
+              ],
+              "it": [
+                "Incipit testuale"
+              ],
+              "fr": [
+                "Incipit du texte"
+              ],
+              "pt": [
+                "Incipit literário"
+              ],
+              "de": [
+                "Textincipit"
+              ],
+              "es": [
+                "Íncipit literario"
+              ]
+            },
+            "value": {
+              "none": [
+                "Verleih uns Frieden gnädiglich"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Tonacja lub modus"
+              ],
+              "en": [
+                "Key or mode"
+              ],
+              "it": [
+                "Tonalità, modo"
+              ],
+              "fr": [
+                "Tonalité, mode"
+              ],
+              "pt": [
+                "Tonalidade, modo"
+              ],
+              "de": [
+                "Tonart, Modus"
+              ],
+              "es": [
+                "Tonalidad o modo"
+              ]
+            },
+            "value": {
+              "pl": [
+                "Es-dur"
+              ],
+              "en": [
+                "E♭ major"
+              ],
+              "it": [
+                "Mi♭ maggiore"
+              ],
+              "fr": [
+                "Mi♭ majeur"
+              ],
+              "pt": [
+                "Mi bemol maior"
+              ],
+              "de": [
+                "Es-Dur"
+              ],
+              "es": [
+                "Mi bemol Mayor"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Klucz"
+              ],
+              "en": [
+                "Clef"
+              ],
+              "it": [
+                "Chiave"
+              ],
+              "fr": [
+                "Clé"
+              ],
+              "pt": [
+                "Clave"
+              ],
+              "de": [
+                "Schlüssel"
+              ],
+              "es": [
+                "Clave"
+              ]
+            },
+            "value": {
+              "none": [
+                "F-4"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Metrum"
+              ],
+              "en": [
+                "Time signature"
+              ],
+              "it": [
+                "Misura"
+              ],
+              "fr": [
+                "Indication de mesure"
+              ],
+              "pt": [
+                "Compasso"
+              ],
+              "de": [
+                "Metrum"
+              ],
+              "es": [
+                "Indicación de compás"
+              ]
+            },
+            "value": {
+              "none": [
+                "3/4"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Głos/instrument"
+              ],
+              "en": [
+                "Voice/instrument"
+              ],
+              "it": [
+                "Voce/strumento"
+              ],
+              "fr": [
+                "Voix/instrument"
+              ],
+              "pt": [
+                "Voz/instrumento"
+              ],
+              "de": [
+                "Besetzung"
+              ],
+              "es": [
+                "Voz/instrumento"
+              ]
+            },
+            "value": {
+              "none": [
+                "B"
+              ]
+            }
+          },
+          {
+            "label": {
+              "pl": [
+                "Znaki przykluczowe"
+              ],
+              "en": [
+                "Key signature"
+              ],
+              "it": [
+                "Armatura di chiave"
+              ],
+              "fr": [
+                "Armure"
+              ],
+              "pt": [
+                "Armadura de clave"
+              ],
+              "de": [
+                "Akzidentien"
+              ],
+              "es": [
+                "Armadura de clave"
+              ]
+            },
+            "value": {
+              "none": [
+                "bBEA"
+              ]
+            }
+          }
+        ],
+        "rendered": [
+          {
+            "format": "image/svg+xml",
+            "data": ""
+          },
+          {
+            "format": "audio/midi",
+            "data": ""
+          },
+          {
+            "format": "image/png",
+            "url": "https://dev.rism.online/works/32206/incipits/1.1.2/png"
+          }
+        ],
+        "encodings": [
+          {
+            "label": {
+              "pl": [
+                "Kod Plaine and Easie"
+              ],
+              "en": [
+                "Plaine and Easie code"
+              ],
+              "it": [
+                "Codice Plaine and Easie"
+              ],
+              "fr": [
+                "Code Plaine and Easie"
+              ],
+              "pt": [
+                "Código Plaine and Easie"
+              ],
+              "de": [
+                "Plaine and Easie Code"
+              ],
+              "es": [
+                "Código Plaine and Easie"
+              ]
+            },
+            "format": "application/json",
+            "data": {
+              "clef": "F-4",
+              "keysig": "bBEA",
+              "timesig": "3/4",
+              "key": "E|b",
+              "data": "=15/,4EGF/2E4E/EBA/G-G/'2C,4B/AG{8EF}/2.G/4E"
+            }
+          },
+          {
+            "label": {
+              "none": [
+                "MEI"
+              ]
+            },
+            "format": "application/mei+xml",
+            "url": "https://dev.rism.online/works/32206/incipits/1.1.2/mei"
+          }
+        ],
+        "properties": {
+          "clef": "F-4",
+          "keysig": "bBEA",
+          "timesig": "3/4",
+          "notation": "=15/,4EGF/2E4E/EBA/G-G/'2C,4B/AG{8EF}/2.G/4E"
+        }
+      }
+    ]
+  },
+  "sources": {
+    "url": "https://dev.rism.online/works/32206/sources",
+    "totalItems": 16
+  },
+  "externalAuthorities": {
+    "label": {
+      "pl": [
+        "Identyfikator innego standardu"
+      ],
+      "en": [
+        "Other standard identifier"
+      ],
+      "it": [
+        "Riferimento autorità"
+      ],
+      "fr": [
+        "Référence d'authorité"
+      ],
+      "pt": [
+        "Outro identificador padronizado"
+      ],
+      "de": [
+        "Normdatenverweise"
+      ],
+      "es": [
+        "Otro identificador estándar"
+      ]
+    },
+    "type": "rism:ExternalAuthoritiesSection",
+    "items": [
+      {
+        "url": "http://id.loc.gov/authorities/names/n85008915",
+        "base": "http://id.loc.gov/authorities/names/",
+        "label": {
+          "none": [
+            "Library of Congress: n85008915"
+          ]
+        },
+        "value": "n85008915",
+        "type": "rism:ExternalAuthority"
+      }
+    ]
+  },
+  "formOfWork": {
+    "sectionLabel": {
+      "pl": [
+        "Gatunek dzieła"
+      ],
+      "en": [
+        "Form of work"
+      ],
+      "it": [
+        "Forma dell'opera"
+      ],
+      "fr": [
+        "Forme de l'œuvre"
+      ],
+      "pt": [
+        "Forma da obra"
+      ],
+      "de": [
+        "Werkgattung"
+      ],
+      "es": [
+        "Forma de la obra"
+      ]
+    },
+    "items": [
+      {
+        "id": "https://dev.rism.online/subjects/25250",
+        "type": "rism:Subject",
+        "label": {
+          "none": [
+            "Sacred songs"
+          ]
+        },
+        "value": "Sacred+songs"
+      },
+      {
+        "id": "https://dev.rism.online/subjects/25240",
+        "type": "rism:Subject",
+        "label": {
+          "none": [
+            "Motets"
+          ]
+        },
+        "value": "Motets"
+      },
+      {
+        "id": "https://dev.rism.online/subjects/25237",
+        "type": "rism:Subject",
+        "label": {
+          "none": [
+            "Chorales"
+          ]
+        },
+        "value": "Chorales"
+      },
+      {
+        "id": "https://dev.rism.online/subjects/25226",
+        "type": "rism:Subject",
+        "label": {
+          "none": [
+            "Cantatas"
+          ]
+        },
+        "value": "Cantatas"
+      },
+      {
+        "id": "https://dev.rism.online/subjects/25238",
+        "type": "rism:Subject",
+        "label": {
+          "none": [
+            "Hymns"
+          ]
+        },
+        "value": "Hymns"
+      },
+      {
+        "id": "https://dev.rism.online/subjects/25237",
+        "type": "rism:Subject",
+        "label": {
+          "none": [
+            "Chorales"
+          ]
+        },
+        "value": "Chorales"
+      }
+    ]
+  },
+  "relationships": {
+    "sectionLabel": {
+      "pl": [
+        "Relacje"
+      ],
+      "en": [
+        "Relations"
+      ],
+      "it": [
+        "Relazioni"
+      ],
+      "fr": [
+        "Relations"
+      ],
+      "pt": [
+        "Relacionamentos"
+      ],
+      "de": [
+        "Beziehungen"
+      ],
+      "es": [
+        "Relaciones"
+      ]
+    },
+    "items": [
+      {
+        "role": {
+          "label": {
+            "pl": [
+              "Autor słów"
+            ],
+            "en": [
+              "Lyricist"
+            ],
+            "it": [
+              "Poeta"
+            ],
+            "fr": [
+              "Parolier"
+            ],
+            "pt": [
+              "Letrista"
+            ],
+            "de": [
+              "Textdichter"
+            ],
+            "es": [
+              "Letrista"
+            ]
+          },
+          "value": "relators:lyr",
+          "id": "relators:lyr"
+        },
+        "relatedTo": {
+          "id": "https://dev.rism.online/people/133052",
+          "label": {
+            "none": [
+              "Luther, Martin (1483-1546)"
+            ]
+          },
+          "type": "rism:Person"
+        }
+      },
+      {
+        "role": {
+          "label": {
+            "pl": [
+              "Tłumacz"
+            ],
+            "en": [
+              "Translator"
+            ],
+            "it": [
+              "Traduttore"
+            ],
+            "fr": [
+              "Traducteur"
+            ],
+            "pt": [
+              "Tradutor"
+            ],
+            "de": [
+              "Übersetzer"
+            ],
+            "es": [
+              "Traductor"
+            ]
+          },
+          "value": "relators:trl",
+          "id": "relators:trl"
+        },
+        "relatedTo": {
+          "id": "https://dev.rism.online/people/88790",
+          "label": {
+            "none": [
+              "Mendelssohn Bartholdy, Felix (1809-1847)"
+            ]
+          },
+          "type": "rism:Person"
+        }
+      },
+      {
+        "role": {
+          "label": {
+            "pl": [
+              "Adresat dedykacji"
+            ],
+            "en": [
+              "Dedicatee"
+            ],
+            "it": [
+              "Dedicatario"
+            ],
+            "fr": [
+              "Dédicataire"
+            ],
+            "pt": [
+              "Dedicatário(a)"
+            ],
+            "de": [
+              "Widmungsträger"
+            ],
+            "es": [
+              "Dedicatario(a)"
+            ]
+          },
+          "value": "relators:dte",
+          "id": "relators:dte"
+        },
+        "relatedTo": {
+          "id": "https://dev.rism.online/people/349142",
+          "label": {
+            "none": [
+              "Verkenius, Erich Heinrich (1776-1841)"
+            ]
+          },
+          "type": "rism:Person"
+        }
+      }
+    ]
+  }
+}
