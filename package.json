@@ -5,7 +5,12 @@
     "rollup": "^4.28.0"
   },
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build:schema:source": "npx typescript-json-schema tsconfig.json SourceTypes.SourceData --out schemas/source.schema.json --required",
+    "build:schema-no-extra:source": "npx typescript-json-schema tsconfig.json SourceTypes.SourceData --out schemas/source.schema-no-extra.json --required --noExtraProps",
+    "build:schema:work": "npx typescript-json-schema tsconfig.json WorkTypes.WorkData --out schemas/work.schema.json --required",
+    "build:schema-no-extra:work": "npx typescript-json-schema tsconfig.json WorkTypes.WorkData --out schemas/work.schema-no-extra.json --required --noExtraProps",
+    "build:schemas": "npm run build:schema:source && npm run build:schema-no-extra:source && npm run build:schema:work && npm run build:schema-no-extra:work"
   },
   "type": "module"
 }

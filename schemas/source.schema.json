@@ -1,0 +1,443 @@
+{
+    "$ref": "#/definitions/SourceTypes.SourceData",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "I18nData": {
+            "additionalProperties": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "description": "Label object for multilingual strings",
+            "type": "object"
+        },
+        "SourceTypes.ContentTypeData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.ContentsData": {
+            "properties": {
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "subjects": {
+                    "$ref": "#/definitions/SourceTypes.SubjectsData"
+                },
+                "summary": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.SummaryItemData"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.CreatedData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.CreatorData": {
+            "properties": {
+                "relatedTo": {
+                    "$ref": "#/definitions/SourceTypes.RelatedToData"
+                },
+                "role": {
+                    "$ref": "#/definitions/SourceTypes.RoleData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.DatesData": {
+            "properties": {
+                "dateStatement": {
+                    "type": "string"
+                },
+                "earliestDate": {
+                    "type": "number"
+                },
+                "latestDate": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.ExemplarsData": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.ExemplarsItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.ExemplarsItemData": {
+            "properties": {
+                "heldBy": {
+                    "$ref": "#/definitions/SourceTypes.RelatedToData"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "notes": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.NotesItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "summary": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.MaterialSummaryData"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "SourceTypes.MaterialGroupItemData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "summary": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.MaterialSummaryData"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.MaterialGroupsData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.MaterialGroupItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.MaterialSummaryData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "value": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.NotesItemData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.RecordHistoryData": {
+            "properties": {
+                "created": {
+                    "$ref": "#/definitions/SourceTypes.CreatedData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated": {
+                    "$ref": "#/definitions/SourceTypes.UpdatedData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.ReferencesNotesData": {
+            "properties": {
+                "notes": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.NotesItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.RelatedToData": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "label"
+            ],
+            "type": "object"
+        },
+        "SourceTypes.RelationshipsData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.RelationshipsItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.RelationshipsItemData": {
+            "properties": {
+                "relatedTo": {
+                    "$ref": "#/definitions/SourceTypes.RelatedToData"
+                },
+                "role": {
+                    "$ref": "#/definitions/SourceTypes.RoleData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.RoleData": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.SourceData": {
+            "properties": {
+                "@context": {
+                    "type": "string"
+                },
+                "contents": {
+                    "$ref": "#/definitions/SourceTypes.ContentsData"
+                },
+                "creator": {
+                    "$ref": "#/definitions/SourceTypes.CreatorData"
+                },
+                "dates": {
+                    "$ref": "#/definitions/SourceTypes.DatesData"
+                },
+                "exemplars": {
+                    "$ref": "#/definitions/SourceTypes.ExemplarsData"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "materialGroups": {
+                    "$ref": "#/definitions/SourceTypes.MaterialGroupsData"
+                },
+                "recordHistory": {
+                    "$ref": "#/definitions/SourceTypes.RecordHistoryData"
+                },
+                "referencesNotes": {
+                    "$ref": "#/definitions/SourceTypes.ReferencesNotesData"
+                },
+                "relationships": {
+                    "$ref": "#/definitions/SourceTypes.RelationshipsData"
+                },
+                "sourceItems": {
+                    "$ref": "#/definitions/SourceTypes.SourceItemsData"
+                },
+                "sourceTypes": {
+                    "$ref": "#/definitions/SourceTypes.SourceTypesData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeLabel": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "SourceTypes.SourceItemsData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.SourceData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "totalItems": {
+                    "type": "number"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.SourceTypeData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.SourceTypesData": {
+            "properties": {
+                "contentTypes": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.ContentTypeData"
+                    },
+                    "type": "array"
+                },
+                "recordType": {
+                    "$ref": "#/definitions/SourceTypes.SourceTypeData"
+                },
+                "sourceType": {
+                    "$ref": "#/definitions/SourceTypes.SourceTypeData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.SubjectsData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SourceTypes.SubjectsItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.SubjectsItemData": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "SourceTypes.SummaryItemData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "value": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "SourceTypes.UpdatedData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
+

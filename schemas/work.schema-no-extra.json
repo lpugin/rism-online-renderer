@@ -1,0 +1,254 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "definitions": {
+        "I18nData": {
+            "additionalProperties": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "description": "Label object for multilingual strings",
+            "type": "object"
+        },
+        "WorkTypes.CreatedData": {
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.CreatorData": {
+            "additionalProperties": false,
+            "properties": {
+                "relatedTo": {
+                    "$ref": "#/definitions/WorkTypes.RelatedToData"
+                },
+                "role": {
+                    "$ref": "#/definitions/WorkTypes.RoleData"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.IncipitSummaryData": {
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "WorkTypes.IncipitsData": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.IncipitsItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.IncipitsItemData": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "incipitSummary": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.IncipitSummaryData"
+                    },
+                    "type": "array"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "WorkTypes.ItemsData": {
+            "additionalProperties": false,
+            "properties": {
+                "relatedTo": {
+                    "$ref": "#/definitions/WorkTypes.RelatedToData"
+                },
+                "relationshipType": {
+                    "type": "string"
+                },
+                "workNumber": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.PartOfData": {
+            "additionalProperties": false,
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.ItemsData"
+                    },
+                    "type": "array"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.RecordHistoryData": {
+            "additionalProperties": false,
+            "properties": {
+                "created": {
+                    "$ref": "#/definitions/WorkTypes.CreatedData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated": {
+                    "$ref": "#/definitions/WorkTypes.UpdatedData"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.RelatedToData": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "status": {
+                    "$ref": "#/definitions/WorkTypes.StatusData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeLabel": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "required": [
+                "id",
+                "label"
+            ],
+            "type": "object"
+        },
+        "WorkTypes.RoleData": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.StatusData": {
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.SummaryData": {
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.UpdatedData": {
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "@context": {
+            "type": "string"
+        },
+        "creator": {
+            "$ref": "#/definitions/WorkTypes.CreatorData"
+        },
+        "id": {
+            "type": "string"
+        },
+        "incipits": {
+            "$ref": "#/definitions/WorkTypes.IncipitsData"
+        },
+        "label": {
+            "$ref": "#/definitions/I18nData"
+        },
+        "partOf": {
+            "$ref": "#/definitions/WorkTypes.PartOfData"
+        },
+        "recordHistory": {
+            "$ref": "#/definitions/WorkTypes.RecordHistoryData"
+        },
+        "summary": {
+            "items": {
+                "$ref": "#/definitions/WorkTypes.SummaryData"
+            },
+            "type": "array"
+        },
+        "type": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "partOf"
+    ],
+    "type": "object"
+}
+

@@ -42,3 +42,16 @@ Building the renderer wrapper with:
 npm install
 npn run build
 ```
+
+Building the JSON schema with:
+```
+npm run build:schemas
+```
+
+Validating examples:
+```shell
+python3 validate_json_from_uri.py --url https://rism.online/sources/1001014328 --schema ./schemas/source.schema.json 
+python3 validate_json_from_uri.py --url https://rism.online/sources/1001014328 --schema ./schemas/source.schema-no-extra.json 
+python3 validate_json_from_uri.py --url https://rism.online/works/32486 --schema ./schemas/work.schema.json
+python3 validate_json_from_uri.py --url https://rism.online/works/32486 --schema ./schemas/work.schema-no-extra.json
+```
