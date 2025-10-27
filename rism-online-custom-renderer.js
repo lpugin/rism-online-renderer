@@ -75,7 +75,7 @@ var RISMOnlineCustom = (function (exports) {
             this.map = initialMap;
         }
         get(language) {
-            return (this.has(language) ? this.map[language] : "");
+            return (this.has(language) ? this.map[language] : []);
         }
         has(language) {
             return Object.prototype.hasOwnProperty.call(this.map, language);
@@ -89,11 +89,17 @@ var RISMOnlineCustom = (function (exports) {
                 }
                 const langContainer = document.createElement("span");
                 langContainer.className = `lang-${lang}`;
-                langContainer.textContent = this.get(lang);
+                this.get(lang).forEach((item) => {
+                    const itemContainer = document.createElement("span");
+                    itemContainer.textContent = item;
+                    langContainer.appendChild(itemContainer);
+                });
                 container.appendChild(langContainer);
             }
             return container;
         }
+    }
+    class Label extends I18n {
     }
     class LabelledLink extends ROElement {
         constructor(label, id) {
@@ -125,7 +131,7 @@ var RISMOnlineCustom = (function (exports) {
         }
         for (const child of children) {
             if (child instanceof I18n) {
-                el.append(document.createTextNode(child.get('en')));
+                el.append(document.createTextNode(child.get('en').join()));
             }
             else if (child instanceof Node) {
                 el.append(child);
@@ -170,7 +176,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.type = data.type;
                 }
             }
@@ -180,13 +186,23 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.summary = (data.summary || []).map((item) => new SummaryItem(item));
                     this.subjects = new Subjects(data.subjects);
                 }
             }
         }
         Sources.Contents = Contents;
+        class Created extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Sources.Created = Created;
         class Creator extends ROElement {
             constructor(data) {
                 super();
@@ -215,7 +231,7 @@ var RISMOnlineCustom = (function (exports) {
                 if (data) {
                     this.id = new URI(data.id);
                     this.type = data.type;
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new ExemplarsItem(item));
                 }
             }
@@ -228,8 +244,8 @@ var RISMOnlineCustom = (function (exports) {
                 if (data) {
                     this.id = new URI(data.id);
                     this.type = data.type;
-                    this.sectionLabel = new I18n(data.sectionLabel);
-                    this.label = new I18n(data.label);
+                    this.sectionLabel = new Label(data.sectionLabel);
+                    this.label = new Label(data.label);
                     this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
                     this.notes = (data.notes || []).map((note) => new NotesItem(note));
                     this.heldBy = new RelatedTo(data.heldBy);
@@ -241,7 +257,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
                 }
             }
@@ -251,7 +267,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new MaterialGroupItem(item));
                 }
             }
@@ -261,7 +277,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new MaterialSummaryValue(data.value);
                     this.type = data.type;
                 }
@@ -275,7 +291,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new NotesItemValue(data.value);
                 }
             }
@@ -289,27 +305,9 @@ var RISMOnlineCustom = (function (exports) {
                 super();
                 if (data) {
                     this.type = data.type;
-                    this.createdLabel = new I18n(data.createdLabel);
-                    this.updatedLabel = new I18n(data.updatedLabel);
-                    this.created = data.created;
-                    this.updated = data.updated;
+                    this.created = new Created(data.created);
+                    this.updated = new Updated(data.updated);
                 }
-            }
-            toHTML(lang) {
-                const container = this.createHTMLElement();
-                if (this.created && this.createdLabel) {
-                    const createdDiv = document.createElement("div");
-                    createdDiv.appendChild(this.createdLabel.toHTML(lang));
-                    createdDiv.appendChild(this.createHTMLTextElement(this.created));
-                    container.appendChild(createdDiv);
-                }
-                if (this.updated && this.updatedLabel) {
-                    const updatedDiv = document.createElement("div");
-                    updatedDiv.appendChild(this.updatedLabel.toHTML(lang));
-                    updatedDiv.appendChild(this.createHTMLTextElement(this.updated));
-                    container.appendChild(updatedDiv);
-                }
-                return container;
             }
         }
         Sources.RecordHistory = RecordHistory;
@@ -317,7 +315,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.type = data.type;
                     this.notes = (data.notes || []).map((note) => new NotesItem(note));
                 }
@@ -328,7 +326,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new RelationshipsItem(item));
                 }
             }
@@ -360,7 +358,7 @@ var RISMOnlineCustom = (function (exports) {
                 this.hide("value");
                 this.hide("id");
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = data.value;
                     this.id = data.id;
                 }
@@ -382,7 +380,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.type = data.type;
                 }
             }
@@ -403,7 +401,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new SubjectsItem(item));
                 }
             }
@@ -415,7 +413,7 @@ var RISMOnlineCustom = (function (exports) {
                 if (data) {
                     this.id = new URI(data.id);
                     this.type = data.type;
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = data.value;
                 }
             }
@@ -425,7 +423,7 @@ var RISMOnlineCustom = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new SummaryValue(data.value);
                     this.type = data.type;
                 }
@@ -435,6 +433,16 @@ var RISMOnlineCustom = (function (exports) {
         class SummaryValue extends I18n {
         }
         Sources.SummaryValue = SummaryValue;
+        class Updated extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Sources.Updated = Updated;
     })(Sources || (Sources = {}));
 
     function renderSource(source) {
@@ -455,13 +463,13 @@ var RISMOnlineCustom = (function (exports) {
                     headers: { Accept: "application/ld+json" },
                 });
                 const data = await response.json();
-                const context = new Sources.Source(data);
+                const source = new Sources.Source(data);
                 const container = document.getElementById(this.containerId);
                 if (!container) {
                     console.error(`Container with ID "${this.containerId}" not found.`);
                     return;
                 }
-                container.appendChild(renderSource(context));
+                container.appendChild(renderSource(source));
             }
             catch (error) {
                 console.error("Failed to fetch or render JSON-LD:", error);

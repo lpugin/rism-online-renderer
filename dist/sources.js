@@ -1,4 +1,4 @@
-import { I18n, LabelledLink, ROElement, URI } from './base';
+import { I18n, Label, LabelledLink, ROElement, URI } from './base';
 /////////////////////////////
 export var Sources;
 (function (Sources) {
@@ -32,7 +32,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.type = data.type;
             }
         }
@@ -42,13 +42,23 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.sectionLabel = new I18n(data.sectionLabel);
+                this.sectionLabel = new Label(data.sectionLabel);
                 this.summary = (data.summary || []).map((item) => new SummaryItem(item));
                 this.subjects = new Subjects(data.subjects);
             }
         }
     }
     Sources.Contents = Contents;
+    class Created extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.label = new Label(data.label);
+                this.value = data.value;
+            }
+        }
+    }
+    Sources.Created = Created;
     class Creator extends ROElement {
         constructor(data) {
             super();
@@ -77,7 +87,7 @@ export var Sources;
             if (data) {
                 this.id = new URI(data.id);
                 this.type = data.type;
-                this.sectionLabel = new I18n(data.sectionLabel);
+                this.sectionLabel = new Label(data.sectionLabel);
                 this.items = (data.items || []).map((item) => new ExemplarsItem(item));
             }
         }
@@ -90,8 +100,8 @@ export var Sources;
             if (data) {
                 this.id = new URI(data.id);
                 this.type = data.type;
-                this.sectionLabel = new I18n(data.sectionLabel);
-                this.label = new I18n(data.label);
+                this.sectionLabel = new Label(data.sectionLabel);
+                this.label = new Label(data.label);
                 this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
                 this.notes = (data.notes || []).map((note) => new NotesItem(note));
                 this.heldBy = new RelatedTo(data.heldBy);
@@ -103,7 +113,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
             }
         }
@@ -113,7 +123,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.sectionLabel = new I18n(data.sectionLabel);
+                this.sectionLabel = new Label(data.sectionLabel);
                 this.items = (data.items || []).map((item) => new MaterialGroupItem(item));
             }
         }
@@ -123,7 +133,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.value = new MaterialSummaryValue(data.value);
                 this.type = data.type;
             }
@@ -137,7 +147,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.value = new NotesItemValue(data.value);
             }
         }
@@ -151,27 +161,9 @@ export var Sources;
             super();
             if (data) {
                 this.type = data.type;
-                this.createdLabel = new I18n(data.createdLabel);
-                this.updatedLabel = new I18n(data.updatedLabel);
-                this.created = data.created;
-                this.updated = data.updated;
+                this.created = new Created(data.created);
+                this.updated = new Updated(data.updated);
             }
-        }
-        toHTML(lang) {
-            const container = this.createHTMLElement();
-            if (this.created && this.createdLabel) {
-                const createdDiv = document.createElement("div");
-                createdDiv.appendChild(this.createdLabel.toHTML(lang));
-                createdDiv.appendChild(this.createHTMLTextElement(this.created));
-                container.appendChild(createdDiv);
-            }
-            if (this.updated && this.updatedLabel) {
-                const updatedDiv = document.createElement("div");
-                updatedDiv.appendChild(this.updatedLabel.toHTML(lang));
-                updatedDiv.appendChild(this.createHTMLTextElement(this.updated));
-                container.appendChild(updatedDiv);
-            }
-            return container;
         }
     }
     Sources.RecordHistory = RecordHistory;
@@ -179,7 +171,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.sectionLabel = new I18n(data.sectionLabel);
+                this.sectionLabel = new Label(data.sectionLabel);
                 this.type = data.type;
                 this.notes = (data.notes || []).map((note) => new NotesItem(note));
             }
@@ -190,7 +182,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.sectionLabel = new I18n(data.sectionLabel);
+                this.sectionLabel = new Label(data.sectionLabel);
                 this.items = (data.items || []).map((item) => new RelationshipsItem(item));
             }
         }
@@ -222,7 +214,7 @@ export var Sources;
             this.hide("value");
             this.hide("id");
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.value = data.value;
                 this.id = data.id;
             }
@@ -244,7 +236,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.type = data.type;
             }
         }
@@ -265,7 +257,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.sectionLabel = new I18n(data.sectionLabel);
+                this.sectionLabel = new Label(data.sectionLabel);
                 this.items = (data.items || []).map((item) => new SubjectsItem(item));
             }
         }
@@ -277,7 +269,7 @@ export var Sources;
             if (data) {
                 this.id = new URI(data.id);
                 this.type = data.type;
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.value = data.value;
             }
         }
@@ -287,7 +279,7 @@ export var Sources;
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.value = new SummaryValue(data.value);
                 this.type = data.type;
             }
@@ -297,5 +289,15 @@ export var Sources;
     class SummaryValue extends I18n {
     }
     Sources.SummaryValue = SummaryValue;
+    class Updated extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.label = new Label(data.label);
+                this.value = data.value;
+            }
+        }
+    }
+    Sources.Updated = Updated;
 })(Sources || (Sources = {}));
 //# sourceMappingURL=sources.js.map

@@ -75,7 +75,7 @@ export class I18n extends ROElement {
         this.map = initialMap;
     }
     get(language) {
-        return (this.has(language) ? this.map[language] : "");
+        return (this.has(language) ? this.map[language] : []);
     }
     has(language) {
         return Object.prototype.hasOwnProperty.call(this.map, language);
@@ -89,11 +89,17 @@ export class I18n extends ROElement {
             }
             const langContainer = document.createElement("span");
             langContainer.className = `lang-${lang}`;
-            langContainer.textContent = this.get(lang);
+            this.get(lang).forEach((item) => {
+                const itemContainer = document.createElement("span");
+                itemContainer.textContent = item;
+                langContainer.appendChild(itemContainer);
+            });
             container.appendChild(langContainer);
         }
         return container;
     }
+}
+export class Label extends I18n {
 }
 export class LabelledLink extends ROElement {
     constructor(label, id) {
@@ -125,7 +131,7 @@ export function h(tag, attrs = {}, ...children) {
     }
     for (const child of children) {
         if (child instanceof I18n) {
-            el.append(document.createTextNode(child.get('en')));
+            el.append(document.createTextNode(child.get('en').join()));
         }
         else if (child instanceof Node) {
             el.append(child);

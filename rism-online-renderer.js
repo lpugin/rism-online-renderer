@@ -75,7 +75,7 @@ var RISMOnline = (function (exports) {
             this.map = initialMap;
         }
         get(language) {
-            return (this.has(language) ? this.map[language] : "");
+            return (this.has(language) ? this.map[language] : []);
         }
         has(language) {
             return Object.prototype.hasOwnProperty.call(this.map, language);
@@ -89,11 +89,17 @@ var RISMOnline = (function (exports) {
                 }
                 const langContainer = document.createElement("span");
                 langContainer.className = `lang-${lang}`;
-                langContainer.textContent = this.get(lang);
+                this.get(lang).forEach((item) => {
+                    const itemContainer = document.createElement("span");
+                    itemContainer.textContent = item;
+                    langContainer.appendChild(itemContainer);
+                });
                 container.appendChild(langContainer);
             }
             return container;
         }
+    }
+    class Label extends I18n {
     }
     class LabelledLink extends ROElement {
         constructor(label, id) {
@@ -147,7 +153,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.type = data.type;
                 }
             }
@@ -157,13 +163,23 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.summary = (data.summary || []).map((item) => new SummaryItem(item));
                     this.subjects = new Subjects(data.subjects);
                 }
             }
         }
         Sources.Contents = Contents;
+        class Created extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Sources.Created = Created;
         class Creator extends ROElement {
             constructor(data) {
                 super();
@@ -192,7 +208,7 @@ var RISMOnline = (function (exports) {
                 if (data) {
                     this.id = new URI(data.id);
                     this.type = data.type;
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new ExemplarsItem(item));
                 }
             }
@@ -205,8 +221,8 @@ var RISMOnline = (function (exports) {
                 if (data) {
                     this.id = new URI(data.id);
                     this.type = data.type;
-                    this.sectionLabel = new I18n(data.sectionLabel);
-                    this.label = new I18n(data.label);
+                    this.sectionLabel = new Label(data.sectionLabel);
+                    this.label = new Label(data.label);
                     this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
                     this.notes = (data.notes || []).map((note) => new NotesItem(note));
                     this.heldBy = new RelatedTo(data.heldBy);
@@ -218,7 +234,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.summary = (data.summary || []).map((item) => new MaterialSummary(item));
                 }
             }
@@ -228,7 +244,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new MaterialGroupItem(item));
                 }
             }
@@ -238,7 +254,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new MaterialSummaryValue(data.value);
                     this.type = data.type;
                 }
@@ -252,7 +268,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new NotesItemValue(data.value);
                 }
             }
@@ -266,27 +282,9 @@ var RISMOnline = (function (exports) {
                 super();
                 if (data) {
                     this.type = data.type;
-                    this.createdLabel = new I18n(data.createdLabel);
-                    this.updatedLabel = new I18n(data.updatedLabel);
-                    this.created = data.created;
-                    this.updated = data.updated;
+                    this.created = new Created(data.created);
+                    this.updated = new Updated(data.updated);
                 }
-            }
-            toHTML(lang) {
-                const container = this.createHTMLElement();
-                if (this.created && this.createdLabel) {
-                    const createdDiv = document.createElement("div");
-                    createdDiv.appendChild(this.createdLabel.toHTML(lang));
-                    createdDiv.appendChild(this.createHTMLTextElement(this.created));
-                    container.appendChild(createdDiv);
-                }
-                if (this.updated && this.updatedLabel) {
-                    const updatedDiv = document.createElement("div");
-                    updatedDiv.appendChild(this.updatedLabel.toHTML(lang));
-                    updatedDiv.appendChild(this.createHTMLTextElement(this.updated));
-                    container.appendChild(updatedDiv);
-                }
-                return container;
             }
         }
         Sources.RecordHistory = RecordHistory;
@@ -294,7 +292,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.type = data.type;
                     this.notes = (data.notes || []).map((note) => new NotesItem(note));
                 }
@@ -305,7 +303,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new RelationshipsItem(item));
                 }
             }
@@ -337,7 +335,7 @@ var RISMOnline = (function (exports) {
                 this.hide("value");
                 this.hide("id");
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = data.value;
                     this.id = data.id;
                 }
@@ -359,7 +357,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.type = data.type;
                 }
             }
@@ -380,7 +378,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.sectionLabel = new I18n(data.sectionLabel);
+                    this.sectionLabel = new Label(data.sectionLabel);
                     this.items = (data.items || []).map((item) => new SubjectsItem(item));
                 }
             }
@@ -392,7 +390,7 @@ var RISMOnline = (function (exports) {
                 if (data) {
                     this.id = new URI(data.id);
                     this.type = data.type;
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = data.value;
                 }
             }
@@ -402,7 +400,7 @@ var RISMOnline = (function (exports) {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new SummaryValue(data.value);
                     this.type = data.type;
                 }
@@ -412,30 +410,39 @@ var RISMOnline = (function (exports) {
         class SummaryValue extends I18n {
         }
         Sources.SummaryValue = SummaryValue;
+        class Updated extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Sources.Updated = Updated;
     })(Sources || (Sources = {}));
 
     /////////////////////////////
     var Works;
     (function (Works) {
         class Work extends ROElement {
-            //partOf?: PartOf;
-            //recordHistory?: RecordHistory;
-            //incipits?: Incipits;
             //externalAuthorities?: ExternalAuthorities;
             //formOfWork?: FormOfWork;
             //relationships?: Relationships;
             constructor(data) {
                 super();
+                this.hide("id");
                 if (data) {
                     this["@context"] = data["@context"];
-                    this.id = data.id;
+                    this.labelledLink = new LabelledLink(data.label, data.id);
                     this.type = data.type;
-                    this.label = new I18n(data.label);
-                    //this.creator = new Creator(data.creator);
+                    this.creator = new Creator(data.creator);
                     this.summary = (data.summary || []).map((item) => new Summary(item));
+                    this.partOf = new PartOf(data.partOf);
+                    this.recordHistory = new RecordHistory(data.recordHistory);
+                    this.incipits = new Incipits(data.incipits);
                     /*
                     this.sourceTypes = new SourceTypes(data.sourceTypes);
-                    this.recordHistory = new RecordHistory(data.recordHistory);
                     this.contents = new Contents(data.contents);
                     this.materialGroups = new MaterialGroups(data.materialGroups);
                     this.relationships = new Relationships(data.relationships);
@@ -449,16 +456,151 @@ var RISMOnline = (function (exports) {
         }
         Works.Work = Work;
         /////
+        class Created extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Works.Created = Created;
+        class Creator extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.role = new Role(data.role);
+                    this.relatedTo = new RelatedTo(data.relatedTo);
+                }
+            }
+        }
+        Works.Creator = Creator;
+        class Incipits extends ROElement {
+            constructor(data) {
+                super();
+                this.hide("id");
+                if (data) {
+                    this.id = new URI(data.id);
+                    this.type = data.type;
+                    this.sectionLabel = new Label(data.sectionLabel);
+                    this.items = (data.items || []).map((item) => new IncipitsItem(item));
+                }
+            }
+        }
+        Works.Incipits = Incipits;
+        class IncipitsItem extends ROElement {
+            constructor(data) {
+                super();
+                this.hide("id");
+                if (data) {
+                    this.id = new URI(data.id);
+                    this.type = data.type;
+                    this.sectionLabel = new Label(data.sectionLabel);
+                    this.label = new Label(data.label);
+                    this.summary = (data.incipitSummary || []).map((item) => new IncipitSummary(item));
+                    //this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
+                    //this.heldBy = new RelatedTo(data.heldBy);
+                }
+            }
+        }
+        Works.IncipitsItem = IncipitsItem;
+        class IncipitSummary extends ROElement {
+            constructor(data) {
+                super();
+            }
+        }
+        Works.IncipitSummary = IncipitSummary;
+        class Item extends ROElement {
+            constructor(data) {
+                super();
+                this.hide("relationshipType");
+                if (data) {
+                    this.relationshipType = data.relationshipType;
+                    this.workNumber = data.workNumber;
+                    this.relatedTo = new RelatedTo(data.relatedTo);
+                }
+            }
+        }
+        Works.Item = Item;
+        class PartOf extends ROElement {
+            constructor(data) {
+                super();
+                this.hide("id");
+                if (data) {
+                    this.type = data.type;
+                    this.label = new Label(data.label);
+                    this.items = (data.items || []).map((item) => new Item(item));
+                }
+            }
+        }
+        Works.PartOf = PartOf;
+        class RecordHistory extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.type = data.type;
+                    this.created = new Created(data.created);
+                    this.updated = new Updated(data.updated);
+                }
+            }
+        }
+        Works.RecordHistory = RecordHistory;
+        class RelatedTo extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.labelledLink = new LabelledLink(data.label, data.id);
+                    this.type = data.type;
+                    this.status = new Status(data.status);
+                }
+            }
+        }
+        Works.RelatedTo = RelatedTo;
+        class Role extends ROElement {
+            constructor(data) {
+                super();
+                this.hide("value");
+                this.hide("id");
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                    this.id = data.id;
+                }
+            }
+        }
+        Works.Role = Role;
+        class Status extends ROElement {
+            constructor(data) {
+                super();
+                this.hide("value");
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Works.Status = Status;
         class Summary extends ROElement {
             constructor(data) {
                 super();
                 if (data) {
-                    this.label = new I18n(data.label);
+                    this.label = new Label(data.label);
                     this.value = new I18n(data.value);
                 }
             }
         }
         Works.Summary = Summary;
+        class Updated extends ROElement {
+            constructor(data) {
+                super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = data.value;
+                }
+            }
+        }
+        Works.Updated = Updated;
         /*
         class ContentType extends ROElement {
           label?: I18n;
@@ -854,7 +996,7 @@ var RISMOnline = (function (exports) {
         async render(language = "en") {
             try {
                 const response = await fetch(this.uri, {
-                    headers: { Accept: "application/ld+json" }
+                    headers: { Accept: "application/ld+json" },
                 });
                 const data = await response.json();
                 const work = new Works.Work(data);

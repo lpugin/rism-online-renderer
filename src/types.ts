@@ -4,7 +4,7 @@ export type LangMap = { [lang: string]: string[] };
 
 /** Label object for multilingual strings */
 export interface I18nData {
-    [language: string]: string;
+    [language: string]: string[];
 }
 
 /** URI reference */
@@ -46,6 +46,11 @@ export namespace SourceTypes {
     export interface ContentTypeData {
         label?: I18nData;
         type?: string;
+    }
+
+    export interface CreatedData {
+        label?: I18nData;
+        value?: string;
     }
 
     export interface CreatorData {
@@ -99,10 +104,14 @@ export namespace SourceTypes {
 
     export interface RecordHistoryData {
         type?: string;
-        createdLabel?: I18nData;
-        updatedLabel?: I18nData;
-        created?: string;
-        updated?: string;
+        created?: CreatedData;
+        updated?: UpdatedData;
+    }
+
+    export interface ReferencesNotesData {
+        sectionLabel?: I18nData;
+        type?: string;
+        notes?: NotesItemData[];
     }
 
     export interface RelatedToData {
@@ -147,7 +156,7 @@ export namespace SourceTypes {
 
     export interface SubjectsItemData {
         id: string;
-        type?: string[];
+        type?: string;
         label?: I18nData;
         value?: string;
     }
@@ -163,10 +172,9 @@ export namespace SourceTypes {
         type?: string[];
     }
 
-    export interface ReferencesNotesData {
-        sectionLabel?: I18nData;
-        type?: string;
-        notes?: NotesItemData[];
+    export interface UpdatedData {
+        label?: I18nData;
+        value?: string;
     }
 }
 
@@ -183,9 +191,9 @@ export namespace WorkTypes {
         label?: I18nData;
         creator?: CreatorData;
         summary?: SummaryData[];
-        partOf?: PartOfData;
+        partOf: PartOfData;
         recordHistory?: RecordHistoryData;
-        //incipits?: IncipitsData;
+        incipits?: IncipitsData;
         //externalAuthorities?: ExternalAuthoritiesData;
         //formOfWork?: FormOfWorkData;
         //relationships?: RelationshipsData;
@@ -193,13 +201,30 @@ export namespace WorkTypes {
 
     export interface CreatedData {
         label?: I18nData;
-        type?: string;
+        value?: string;
     }
 
     export interface CreatorData {
         role?: RoleData;
         relatedTo?: RelatedToData;
     }
+
+    export interface IncipitsData {
+        id?: string;
+        type?: string;
+        sectionLabel?: I18nData;
+        items?: IncipitsItemData[];
+    }
+
+    export interface IncipitsItemData {
+        id: string;
+        type?: string;
+        sectionLabel?: I18nData;
+        label?: I18nData;
+        incipitSummary?: IncipitSummaryData[];
+    }
+
+    export interface IncipitSummaryData { }
 
     export interface ItemsData {
         relationshipType?: string;
@@ -210,7 +235,7 @@ export namespace WorkTypes {
     export interface PartOfData {
         label?: I18nData;
         type?: string;
-        items?: ItemsData;
+        items?: ItemsData[];
     }
 
     export interface RecordHistoryData {
@@ -245,7 +270,7 @@ export namespace WorkTypes {
 
     export interface UpdatedData {
         label?: I18nData;
-        type?: string;
+        value?: string;
     }
 
 }

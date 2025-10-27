@@ -5,7 +5,7 @@ export class ROElement {
 
   constructor() {
     this.hidden = ["@context", "type"];
-  } 
+  }
 
   hide(member: string): void {
     this.hidden.push(member);
@@ -38,7 +38,7 @@ export class ROElement {
         }
         else {
           child.remove();
-        }    
+        }
       }
       else if (Array.isArray(this[member])) {
         this[member].forEach((item) => {
@@ -91,8 +91,8 @@ export class I18n extends ROElement {
     this.map = initialMap;
   }
 
-  get(language: string): string {
-    return (this.has(language) ? this.map[language] : "")
+  get(language: string): string[] {
+    return (this.has(language) ? this.map[language] : [])
   }
 
   has(language: string): boolean {
@@ -109,13 +109,19 @@ export class I18n extends ROElement {
       }
       const langContainer = document.createElement("span");
       langContainer.className = `lang-${lang}`;
-      langContainer.textContent = this.get(lang);
+      this.get(lang).forEach((item) => {
+        const itemContainer = document.createElement("span");
+        itemContainer.textContent = item;
+        langContainer.appendChild(itemContainer);
+      })
       container.appendChild(langContainer);
     }
 
     return container;
   }
 }
+
+export class Label extends I18n { }
 
 export class LabelledLink extends ROElement {
   label: I18n;
@@ -141,24 +147,24 @@ export class LabelledLink extends ROElement {
 }
 
 export function h(tag: string, attrs: Record<string, any> = {}, ...children: (string | Node | I18n)[]): Element {
-    const el = document.createElement(tag);
-    for (const [key, value] of Object.entries(attrs)) {
-        if (key.startsWith('on') && typeof value === 'function') {
-            el.addEventListener(key.slice(2).toLowerCase(), value);
-        } else if (value != null) {
-            el.setAttribute(key, String(value));
-        }
+  const el = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs)) {
+    if (key.startsWith('on') && typeof value === 'function') {
+      el.addEventListener(key.slice(2).toLowerCase(), value);
+    } else if (value != null) {
+      el.setAttribute(key, String(value));
     }
-    for (const child of children) {
-        if (child instanceof I18n) {
-            el.append(document.createTextNode(child.get('en')));    
-        }
-        else if (child instanceof Node) {
-            el.append(child);
-        }
-        else if (child !== null) {
-            el.append(document.createTextNode(child));
-        }
+  }
+  for (const child of children) {
+    if (child instanceof I18n) {
+      el.append(document.createTextNode(child.get('en').join()));
     }
-    return el;
+    else if (child instanceof Node) {
+      el.append(child);
+    }
+    else if (child !== null) {
+      el.append(document.createTextNode(child));
+    }
+  }
+  return el;
 }

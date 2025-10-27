@@ -1,6 +1,6 @@
 import { SourceTypes } from "./types";
 
-import { I18n, LabelledLink, ROElement, URI } from './base';
+import { I18n, Label, LabelledLink, ROElement, URI } from './base';
 
 /////////////////////////////
 
@@ -48,29 +48,42 @@ export namespace Sources {
   /////
 
   export class ContentType extends ROElement {
-    label?: I18n;
+    label?: Label;
     type?: string;
 
     constructor(data: SourceTypes.ContentTypeData) {
       super();
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.type = data.type;
       }
     }
   }
 
   export class Contents extends ROElement {
-    sectionLabel?: I18n;
+    sectionLabel?: Label;
     summary?: SummaryItem[];
     subjects?: Subjects;
 
     constructor(data: SourceTypes.ContentsData) {
       super();
       if (data) {
-        this.sectionLabel = new I18n(data.sectionLabel);
+        this.sectionLabel = new Label(data.sectionLabel);
         this.summary = (data.summary || []).map((item: SourceTypes.SummaryItemData) => new SummaryItem(item));
         this.subjects = new Subjects(data.subjects);
+      }
+    }
+  }
+
+  export class Created extends ROElement {
+    label?: Label;
+    value?: string;
+
+    constructor(data: SourceTypes.CreatedData) {
+      super();
+      if (data) {
+        this.label = new Label(data.label);
+        this.value = data.value;
       }
     }
   }
@@ -106,7 +119,7 @@ export namespace Sources {
   export class Exemplars extends ROElement {
     id?: URI;
     type?: string;
-    sectionLabel?: I18n;
+    sectionLabel?: Label;
     items?: ExemplarsItem[];
 
     constructor(data: SourceTypes.ExemplarsData) {
@@ -115,7 +128,7 @@ export namespace Sources {
       if (data) {
         this.id = new URI(data.id);
         this.type = data.type;
-        this.sectionLabel = new I18n(data.sectionLabel);
+        this.sectionLabel = new Label(data.sectionLabel);
         this.items = (data.items || []).map((item: SourceTypes.ExemplarsItemData) => new ExemplarsItem(item));
       }
     }
@@ -124,8 +137,8 @@ export namespace Sources {
   export class ExemplarsItem extends ROElement {
     id?: URI;
     type?: string;
-    sectionLabel?: I18n;
-    label?: I18n;
+    sectionLabel?: Label;
+    label?: Label;
     summary?: MaterialSummary[];
     notes?: NotesItem[];
     heldBy?: RelatedTo;
@@ -136,8 +149,8 @@ export namespace Sources {
       if (data) {
         this.id = new URI(data.id);
         this.type = data.type;
-        this.sectionLabel = new I18n(data.sectionLabel);
-        this.label = new I18n(data.label);
+        this.sectionLabel = new Label(data.sectionLabel);
+        this.label = new Label(data.label);
         this.summary = (data.summary || []).map(
           (item: SourceTypes.MaterialSummaryData) => new MaterialSummary(item)
         );
@@ -148,13 +161,13 @@ export namespace Sources {
   }
 
   export class MaterialGroupItem extends ROElement {
-    label?: I18n;
+    label?: Label;
     summary?: MaterialSummary[];
 
     constructor(data: SourceTypes.MaterialGroupItemData) {
       super();
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.summary = (data.summary || []).map(
           (item: SourceTypes.MaterialSummaryData) => new MaterialSummary(item)
         );
@@ -163,27 +176,27 @@ export namespace Sources {
   }
 
   export class MaterialGroups extends ROElement {
-    sectionLabel?: I18n;
+    sectionLabel?: Label;
     items?: MaterialGroupItem[];
 
     constructor(data: SourceTypes.MaterialGroupsData) {
       super();
       if (data) {
-        this.sectionLabel = new I18n(data.sectionLabel);
+        this.sectionLabel = new Label(data.sectionLabel);
         this.items = (data.items || []).map((item: SourceTypes.MaterialGroupItemData) => new MaterialGroupItem(item));
       }
     }
   }
 
   export class MaterialSummary extends ROElement {
-    label?: I18n;
+    label?: Label;
     value?: MaterialSummaryValue;
     type?: string[];
 
     constructor(data: SourceTypes.MaterialSummaryData) {
       super();
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.value = new MaterialSummaryValue(data.value);
         this.type = data.type;
       }
@@ -193,13 +206,13 @@ export namespace Sources {
   export class MaterialSummaryValue extends I18n { }
 
   export class NotesItem extends ROElement {
-    label?: I18n;
+    label?: Label;
     value?: NotesItemValue;
 
     constructor(data: SourceTypes.NotesItemData) {
       super();
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.value = new NotesItemValue(data.value);
       }
     }
@@ -209,49 +222,28 @@ export namespace Sources {
 
   export class RecordHistory extends ROElement {
     type?: string;
-    createdLabel?: I18n;
-    updatedLabel?: I18n;
-    created?: string;
-    updated?: string;
+    created?: Created;
+    updated?: Updated;
 
     constructor(data: SourceTypes.RecordHistoryData) {
       super();
       if (data) {
         this.type = data.type;
-        this.createdLabel = new I18n(data.createdLabel);
-        this.updatedLabel = new I18n(data.updatedLabel);
-        this.created = data.created;
-        this.updated = data.updated;
+        this.created = new Created(data.created);
+        this.updated = new Updated(data.updated);
       }
-    }
-
-    toHTML(lang?: string): HTMLElement {
-      const container = this.createHTMLElement();
-      if (this.created && this.createdLabel) {
-        const createdDiv = document.createElement("div");
-        createdDiv.appendChild(this.createdLabel.toHTML(lang));
-        createdDiv.appendChild(this.createHTMLTextElement(this.created));
-        container.appendChild(createdDiv);
-      }
-      if (this.updated && this.updatedLabel) {
-        const updatedDiv = document.createElement("div");
-        updatedDiv.appendChild(this.updatedLabel.toHTML(lang));
-        updatedDiv.appendChild(this.createHTMLTextElement(this.updated));
-        container.appendChild(updatedDiv);
-      }
-      return container;
     }
   }
 
   export class ReferencesNotes extends ROElement {
-    sectionLabel?: I18n;
+    sectionLabel?: Label;
     type?: string;
     notes?: NotesItem[];
 
     constructor(data: SourceTypes.ReferencesNotesData) {
       super();
       if (data) {
-        this.sectionLabel = new I18n(data.sectionLabel);
+        this.sectionLabel = new Label(data.sectionLabel);
         this.type = data.type;
         this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
       }
@@ -259,13 +251,13 @@ export namespace Sources {
   }
 
   export class Relationships extends ROElement {
-    sectionLabel?: I18n;
+    sectionLabel?: Label;
     items?: RelationshipsItem[];
 
     constructor(data: SourceTypes.RelationshipsData) {
       super();
       if (data) {
-        this.sectionLabel = new I18n(data.sectionLabel);
+        this.sectionLabel = new Label(data.sectionLabel);
         this.items = (data.items || []).map((item: SourceTypes.RelationshipsItemData) => new RelationshipsItem(item));
       }
     }
@@ -298,7 +290,7 @@ export namespace Sources {
   }
 
   export class Role extends ROElement {
-    label?: I18n;
+    label?: Label;
     value?: string;
     id?: string;
 
@@ -307,7 +299,7 @@ export namespace Sources {
       this.hide("value");
       this.hide("id");
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.value = data.value;
         this.id = data.id;
       }
@@ -330,13 +322,13 @@ export namespace Sources {
   }
 
   export class SourceType extends ROElement {
-    label?: I18n;
+    label?: Label;
     type?: string;
 
     constructor(data: SourceTypes.SourceTypeData) {
       super();
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.type = data.type;
       }
     }
@@ -360,13 +352,13 @@ export namespace Sources {
   }
 
   export class Subjects extends ROElement {
-    sectionLabel?: I18n;
+    sectionLabel?: Label;
     items?: SubjectsItem[];
 
     constructor(data: SourceTypes.SubjectsData) {
       super();
       if (data) {
-        this.sectionLabel = new I18n(data.sectionLabel);
+        this.sectionLabel = new Label(data.sectionLabel);
         this.items = (data.items || []).map((item: SourceTypes.SubjectsItemData) => new SubjectsItem(item));
       }
     }
@@ -374,8 +366,8 @@ export namespace Sources {
 
   export class SubjectsItem extends ROElement {
     id?: URI;
-    type?: string[];
-    label?: I18n;
+    type?: string;
+    label?: Label;
     value?: string;
 
     constructor(data: SourceTypes.SubjectsItemData) {
@@ -383,21 +375,21 @@ export namespace Sources {
       if (data) {
         this.id = new URI(data.id);
         this.type = data.type;
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.value = data.value;
       }
     }
   }
 
   export class SummaryItem extends ROElement {
-    label?: I18n;
+    label?: Label;
     value?: SummaryValue;
     type?: string[];
 
     constructor(data: SourceTypes.SummaryItemData) {
       super();
       if (data) {
-        this.label = new I18n(data.label);
+        this.label = new Label(data.label);
         this.value = new SummaryValue(data.value);
         this.type = data.type;
       }
@@ -405,6 +397,18 @@ export namespace Sources {
   }
 
   export class SummaryValue extends I18n { }
+
+
+  export class Updated extends ROElement {
+    label?: Label;
+    value?: string;
+
+    constructor(data: SourceTypes.UpdatedData) {
+      super();
+      if (data) {
+        this.label = new Label(data.label);
+        this.value = data.value;
+      }
+    }
+  }
 }
-
-

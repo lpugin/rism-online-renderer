@@ -32,7 +32,7 @@ export class WorkRenderer {
     async render(language = "en") {
         try {
             const response = await fetch(this.uri, {
-                headers: { Accept: "application/ld+json" }
+                headers: { Accept: "application/ld+json" },
             });
             const data = await response.json();
             const work = new Works.Work(data);

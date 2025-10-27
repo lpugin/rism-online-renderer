@@ -66,7 +66,7 @@ div.source {
     @include source;
   }
 
-  div.labelledlink a div {
+  div.labelledlink a {
     @include link;
   }
 
@@ -107,6 +107,55 @@ div.source {
       div.materialsummary {
         @include flex-row;
       }
+    }
+  }
+}
+
+@mixin work() {
+  background-color: $source-color;
+  color: $label-text-color;
+  border: 1px $source-color solid;
+  padding: $padding;
+}
+
+// Styles
+div.work {
+
+  margin: $margin;
+
+  > div.label,
+  > div.labelledlink a div {
+    @include work;
+  }
+
+  div.labelledlink a {
+    @include link;
+  }
+
+  > div:not(:empty) {
+    @include section;
+
+    > div.label,
+    > div.labelledlink, 
+    > div.labelledlink a div {
+      @include section-label;
+    }
+
+    > div.labelledlink a div {
+      @include link;
+    }
+  }
+
+  div.summary {
+    div.i18n span {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  div.recordhistory {
+    div {
+      @include flex-row;
     }
   }
 }

@@ -1,26 +1,25 @@
-import { I18n, ROElement } from './base';
+import { I18n, Label, LabelledLink, ROElement, URI } from './base';
 /////////////////////////////
 export var Works;
 (function (Works) {
     class Work extends ROElement {
-        //partOf?: PartOf;
-        //recordHistory?: RecordHistory;
-        //incipits?: Incipits;
         //externalAuthorities?: ExternalAuthorities;
         //formOfWork?: FormOfWork;
         //relationships?: Relationships;
         constructor(data) {
             super();
+            this.hide("id");
             if (data) {
                 this["@context"] = data["@context"];
-                this.id = data.id;
+                this.labelledLink = new LabelledLink(data.label, data.id);
                 this.type = data.type;
-                this.label = new I18n(data.label);
-                //this.creator = new Creator(data.creator);
+                this.creator = new Creator(data.creator);
                 this.summary = (data.summary || []).map((item) => new Summary(item));
+                this.partOf = new PartOf(data.partOf);
+                this.recordHistory = new RecordHistory(data.recordHistory);
+                this.incipits = new Incipits(data.incipits);
                 /*
                 this.sourceTypes = new SourceTypes(data.sourceTypes);
-                this.recordHistory = new RecordHistory(data.recordHistory);
                 this.contents = new Contents(data.contents);
                 this.materialGroups = new MaterialGroups(data.materialGroups);
                 this.relationships = new Relationships(data.relationships);
@@ -34,16 +33,156 @@ export var Works;
     }
     Works.Work = Work;
     /////
+    class Created extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.label = new Label(data.label);
+                this.value = data.value;
+            }
+        }
+    }
+    Works.Created = Created;
+    class Creator extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.role = new Role(data.role);
+                this.relatedTo = new RelatedTo(data.relatedTo);
+            }
+        }
+    }
+    Works.Creator = Creator;
+    class Incipits extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("id");
+            if (data) {
+                this.id = new URI(data.id);
+                this.type = data.type;
+                this.sectionLabel = new Label(data.sectionLabel);
+                this.items = (data.items || []).map((item) => new IncipitsItem(item));
+            }
+        }
+    }
+    Works.Incipits = Incipits;
+    class IncipitsItem extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("id");
+            if (data) {
+                this.id = new URI(data.id);
+                this.type = data.type;
+                this.sectionLabel = new Label(data.sectionLabel);
+                this.label = new Label(data.label);
+                this.summary = (data.incipitSummary || []).map((item) => new IncipitSummary(item));
+                //this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
+                //this.heldBy = new RelatedTo(data.heldBy);
+            }
+        }
+    }
+    Works.IncipitsItem = IncipitsItem;
+    class IncipitSummary extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                //this.label = new Label(data.label);
+                //this.value = new MaterialSummaryValue(data.value);
+                //this.type = data.type;
+            }
+        }
+    }
+    Works.IncipitSummary = IncipitSummary;
+    class Item extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("relationshipType");
+            if (data) {
+                this.relationshipType = data.relationshipType;
+                this.workNumber = data.workNumber;
+                this.relatedTo = new RelatedTo(data.relatedTo);
+            }
+        }
+    }
+    Works.Item = Item;
+    class PartOf extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("id");
+            if (data) {
+                this.type = data.type;
+                this.label = new Label(data.label);
+                this.items = (data.items || []).map((item) => new Item(item));
+            }
+        }
+    }
+    Works.PartOf = PartOf;
+    class RecordHistory extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.type = data.type;
+                this.created = new Created(data.created);
+                this.updated = new Updated(data.updated);
+            }
+        }
+    }
+    Works.RecordHistory = RecordHistory;
+    class RelatedTo extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.labelledLink = new LabelledLink(data.label, data.id);
+                this.type = data.type;
+                this.status = new Status(data.status);
+            }
+        }
+    }
+    Works.RelatedTo = RelatedTo;
+    class Role extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("value");
+            this.hide("id");
+            if (data) {
+                this.label = new Label(data.label);
+                this.value = data.value;
+                this.id = data.id;
+            }
+        }
+    }
+    Works.Role = Role;
+    class Status extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("value");
+            if (data) {
+                this.label = new Label(data.label);
+                this.value = data.value;
+            }
+        }
+    }
+    Works.Status = Status;
     class Summary extends ROElement {
         constructor(data) {
             super();
             if (data) {
-                this.label = new I18n(data.label);
+                this.label = new Label(data.label);
                 this.value = new I18n(data.value);
             }
         }
     }
     Works.Summary = Summary;
+    class Updated extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.label = new Label(data.label);
+                this.value = data.value;
+            }
+        }
+    }
+    Works.Updated = Updated;
     /*
     class ContentType extends ROElement {
       label?: I18n;
