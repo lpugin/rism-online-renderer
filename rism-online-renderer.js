@@ -498,7 +498,7 @@ var RISMOnline = (function (exports) {
                     this.type = data.type;
                     this.sectionLabel = new Label(data.sectionLabel);
                     this.label = new Label(data.label);
-                    this.summary = (data.incipitSummary || []).map((item) => new IncipitSummary(item));
+                    this.summary = (data.summary || []).map((item) => new IncipitSummary(item));
                     //this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
                     //this.heldBy = new RelatedTo(data.heldBy);
                 }
@@ -508,6 +508,12 @@ var RISMOnline = (function (exports) {
         class IncipitSummary extends ROElement {
             constructor(data) {
                 super();
+                if (data) {
+                    this.label = new Label(data.label);
+                    this.value = new I18n(data.value);
+                    //this.value = new MaterialSummaryValue(data.value);
+                    //this.type = data.type;
+                }
             }
         }
         Works.IncipitSummary = IncipitSummary;

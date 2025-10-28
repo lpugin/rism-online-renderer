@@ -110,7 +110,7 @@ export namespace Works {
         this.type = data.type;
         this.sectionLabel = new Label(data.sectionLabel);
         this.label = new Label(data.label);
-        this.summary = (data.incipitSummary || []).map(
+        this.summary = (data.summary || []).map(
           (item: WorkTypes.IncipitSummaryData) => new IncipitSummary(item)
         );
         //this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
@@ -120,19 +120,21 @@ export namespace Works {
   }
 
   export class IncipitSummary extends ROElement {
-      label?: Label;
-      //value?: MaterialSummaryValue;
-      type?: string[];
-  
-      constructor(data: WorkTypes.IncipitSummaryData) {
-        super();
-        if (data) {
-          //this.label = new Label(data.label);
-          //this.value = new MaterialSummaryValue(data.value);
-          //this.type = data.type;
-        }
+    label?: Label;
+    value?: I18n;
+    //value?: MaterialSummaryValue;
+    type?: string[];
+
+    constructor(data: WorkTypes.IncipitSummaryData) {
+      super();
+      if (data) {
+        this.label = new Label(data.label);
+        this.value = new I18n(data.value);
+        //this.value = new MaterialSummaryValue(data.value);
+        //this.type = data.type;
       }
     }
+  }
 
   export class Item extends ROElement {
     relationshipType?: string;

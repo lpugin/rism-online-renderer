@@ -221,10 +221,13 @@ export namespace WorkTypes {
         type?: string;
         sectionLabel?: I18nData;
         label?: I18nData;
-        incipitSummary?: IncipitSummaryData[];
+        summary?: IncipitSummaryData[];
     }
 
-    export interface IncipitSummaryData { }
+    export interface IncipitSummaryData {
+        label?: I18nData;
+        value?: I18nData;
+     }
 
     export interface ItemsData {
         relationshipType?: string;
