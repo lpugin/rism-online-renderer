@@ -33,7 +33,109 @@
             },
             "type": "object"
         },
+        "WorkTypes.EncodingsData": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/WorkTypes.PAEData"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.ExternalAuthoritiesData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.ExternalAuthoritiesItemData"
+                    },
+                    "type": "array"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "items"
+            ],
+            "type": "object"
+        },
+        "WorkTypes.ExternalAuthoritiesItemData": {
+            "properties": {
+                "base": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.FormOfWorkData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.FormOfWorkItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "items"
+            ],
+            "type": "object"
+        },
+        "WorkTypes.FormOfWorkItemData": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "WorkTypes.IncipitSummaryData": {
+            "properties": {
+                "label": {
+                    "$ref": "#/definitions/I18nData"
+                },
+                "value": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
             "type": "object"
         },
         "WorkTypes.IncipitsData": {
@@ -58,20 +160,35 @@
         },
         "WorkTypes.IncipitsItemData": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "incipitSummary": {
+                "encodings": {
                     "items": {
-                        "$ref": "#/definitions/WorkTypes.IncipitSummaryData"
+                        "$ref": "#/definitions/WorkTypes.EncodingsData"
                     },
                     "type": "array"
+                },
+                "id": {
+                    "type": "string"
                 },
                 "label": {
                     "$ref": "#/definitions/I18nData"
                 },
+                "properties": {
+                    "$ref": "#/definitions/WorkTypes.PropertiesData"
+                },
+                "rendered": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.RenderedData"
+                    },
+                    "type": "array"
+                },
                 "sectionLabel": {
                     "$ref": "#/definitions/I18nData"
+                },
+                "summary": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.IncipitSummaryData"
+                    },
+                    "type": "array"
                 },
                 "type": {
                     "type": "string"
@@ -96,6 +213,26 @@
             },
             "type": "object"
         },
+        "WorkTypes.PAEData": {
+            "properties": {
+                "clef": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "keysig": {
+                    "type": "string"
+                },
+                "timesig": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "WorkTypes.PartOfData": {
             "properties": {
                 "items": {
@@ -108,6 +245,23 @@
                     "$ref": "#/definitions/I18nData"
                 },
                 "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.PropertiesData": {
+            "properties": {
+                "clef": {
+                    "type": "string"
+                },
+                "keysig": {
+                    "type": "string"
+                },
+                "notation": {
+                    "type": "string"
+                },
+                "timesig": {
                     "type": "string"
                 }
             },
@@ -151,6 +305,45 @@
             ],
             "type": "object"
         },
+        "WorkTypes.RelationshipsData": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/WorkTypes.RelationshipsItemData"
+                    },
+                    "type": "array"
+                },
+                "sectionLabel": {
+                    "$ref": "#/definitions/I18nData"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.RelationshipsItemData": {
+            "properties": {
+                "relatedTo": {
+                    "$ref": "#/definitions/WorkTypes.RelatedToData"
+                },
+                "role": {
+                    "$ref": "#/definitions/WorkTypes.RoleData"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.RenderedData": {
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "WorkTypes.RoleData": {
             "properties": {
                 "id": {
@@ -160,6 +353,17 @@
                     "$ref": "#/definitions/I18nData"
                 },
                 "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WorkTypes.SourcesData": {
+            "properties": {
+                "totalItems": {
+                    "type": "number"
+                },
+                "url": {
                     "type": "string"
                 }
             },
@@ -206,6 +410,12 @@
         "creator": {
             "$ref": "#/definitions/WorkTypes.CreatorData"
         },
+        "externalAuthorities": {
+            "$ref": "#/definitions/WorkTypes.ExternalAuthoritiesData"
+        },
+        "formOfWork": {
+            "$ref": "#/definitions/WorkTypes.FormOfWorkData"
+        },
         "id": {
             "type": "string"
         },
@@ -220,6 +430,12 @@
         },
         "recordHistory": {
             "$ref": "#/definitions/WorkTypes.RecordHistoryData"
+        },
+        "relationships": {
+            "$ref": "#/definitions/WorkTypes.RelationshipsData"
+        },
+        "sources": {
+            "$ref": "#/definitions/WorkTypes.SourcesData"
         },
         "summary": {
             "items": {

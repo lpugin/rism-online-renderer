@@ -166,4 +166,8 @@ div.work {
       }
     }
   }
+
+  div.sources {
+    @include flex-row;
+  }
 }

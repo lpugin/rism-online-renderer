@@ -47,6 +47,11 @@ var RISMOnlineCustom = (function (exports) {
                     text.textContent = this[member];
                     container.appendChild(text);
                 }
+                else if (typeof this[member] === "number") {
+                    const text = document.createElement("div");
+                    text.textContent = this[member].toString();
+                    container.appendChild(text);
+                }
             }
             return container;
         }
@@ -57,13 +62,14 @@ var RISMOnlineCustom = (function (exports) {
         }
     }
     class URI extends ROElement {
-        constructor(link) {
+        constructor(link, displayText) {
             super();
             this.link = link;
+            this.displayText = displayText;
         }
         toHTML() {
             const a = document.createElement("a");
-            a.textContent = this.link;
+            a.textContent = (this.displayText) ? this.displayText : this.link;
             a.setAttribute("href", this.link);
             a.setAttribute("target", "_blank");
             return a;

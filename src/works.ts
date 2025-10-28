@@ -1,6 +1,6 @@
 import { WorkTypes } from "./types";
 
-import { I18n, Label, LabelledLink, ROElement, URI } from './base';
+import { Data, I18n, Label, LabelledLink, ROElement, URI } from './base';
 
 /////////////////////////////
 
@@ -15,13 +15,15 @@ export namespace Works {
     partOf?: PartOf;
     recordHistory?: RecordHistory;
     incipits?: Incipits;
-    //externalAuthorities?: ExternalAuthorities;
-    //formOfWork?: FormOfWork;
-    //relationships?: Relationships;
+    sources?: Sources;
+    externalAuthorities?: ExternalAuthorities;
+    formOfWork?: FormOfWork;
+    relationships?: Relationships;
 
     constructor(data: WorkTypes.WorkData) {
       super();
       this.hide("id");
+      this.hide("sources");
       if (data) {
         this["@context"] = data["@context"];
         this.labelledLink = new LabelledLink(data.label, data.id);
@@ -33,16 +35,10 @@ export namespace Works {
         this.partOf = new PartOf(data.partOf);
         this.recordHistory = new RecordHistory(data.recordHistory);
         this.incipits = new Incipits(data.incipits);
-        /*
-        this.sourceTypes = new SourceTypes(data.sourceTypes);
-        this.contents = new Contents(data.contents);
-        this.materialGroups = new MaterialGroups(data.materialGroups);
+        this.sources = new Sources(data.sources);
+        this.externalAuthorities = new ExternalAuthorities(data.externalAuthorities);
+        this.formOfWork = new FormOfWork(data.formOfWork);
         this.relationships = new Relationships(data.relationships);
-        this.referencesNotes = new ReferencesNotes(data.referencesNotes);
-        this.exemplars = new Exemplars(data.exemplars);
-        this.sourceItems = new SourceItems(data.sourceItems);
-        this.dates = new Dates(data.dates);
-        */
       }
     }
   }
@@ -75,6 +71,99 @@ export namespace Works {
     }
   }
 
+  export class Encodings extends ROElement {
+    label?: Label;
+    format?: string;
+    data?: PAE;
+    url?: string;
+
+    constructor(data: WorkTypes.EncodingsData) {
+      super();
+      this.hide("label");
+      this.hide("format");
+      this.hide("data");
+      this.hide("url");
+      if (data) {
+        this.label = new Label(data.label);
+        this.format = data.format;
+        this.data = new PAE(data.data);
+        this.url = data.url;
+      }
+    }
+  }
+
+  export class ExternalAuthorities extends ROElement {
+    label?: Label;
+    items: ExternalAuthoritiesItem[];
+    type?: string;
+
+    constructor(data: WorkTypes.ExternalAuthoritiesData) {
+      super();
+      if (data) {
+        this.label = new Label(data.label);
+        this.items = (data.items || []).map((item: WorkTypes.ExternalAuthoritiesItemData) => new ExternalAuthoritiesItem(item));
+        this.type = data.type;
+      }
+    }
+  }
+
+  export class ExternalAuthoritiesItem extends ROElement {
+    url?: string;
+    base?: string;
+    labelledLinked?: LabelledLink;
+    value?: string;
+    type?: string;
+
+    constructor(data: WorkTypes.ExternalAuthoritiesItemData) {
+      super();
+      this.hide("url");
+      this.hide("base");
+      this.hide("value");
+      if (data) {
+        this.url = data.url;
+        this.base = data.base;
+        this.labelledLinked = new LabelledLink(data.label, data.url);
+        this.value = data.value;
+        this.type = data.type;
+      }
+    }
+  }
+
+  export class FormOfWork extends ROElement {
+    sectionLabel?: Label;
+    items: FormOfWorkItem[];
+    type?: string;
+
+    constructor(data: WorkTypes.FormOfWorkData) {
+      super();
+      if (data) {
+        this.sectionLabel = new Label(data.sectionLabel);
+        this.items = (data.items || []).map((item: WorkTypes.FormOfWorkItemData) => new FormOfWorkItem(item));
+        this.type = data.type;
+      }
+    }
+  }
+
+  export class FormOfWorkItem extends ROElement {
+    id?: string;
+    label?: Label;
+    value?: string;
+    type?: string;
+
+    constructor(data: WorkTypes.FormOfWorkItemData) {
+      super();
+      this.hide("id");
+      this.hide("base");
+      this.hide("value");
+      if (data) {
+        this.id = data.id;
+        this.label = new Label(data.label);
+        this.value = data.value;
+        this.type = data.type;
+      }
+    }
+  }
+
   export class Incipits extends ROElement {
     id?: URI;
     type?: string;
@@ -99,12 +188,15 @@ export namespace Works {
     sectionLabel?: Label;
     label?: Label;
     summary?: IncipitSummary[];
-    //notes?: NotesItem[];
+    rendered?: Rendered[];
+    encodings?: Encodings[];
+    properties?: Properties;
     heldBy?: RelatedTo;
 
     constructor(data: WorkTypes.IncipitsItemData) {
       super();
       this.hide("id");
+      this.hide("properties");
       if (data) {
         this.id = new URI(data.id);
         this.type = data.type;
@@ -113,8 +205,9 @@ export namespace Works {
         this.summary = (data.summary || []).map(
           (item: WorkTypes.IncipitSummaryData) => new IncipitSummary(item)
         );
-        //this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
-        //this.heldBy = new RelatedTo(data.heldBy);
+        this.rendered = (data.rendered || []).map((item: WorkTypes.RenderedData) => new Rendered(item));
+        this.encodings = (data.encodings || []).map((item: WorkTypes.EncodingsData) => new Encodings(item));
+        this.properties = new Properties(data.properties);
       }
     }
   }
@@ -122,16 +215,12 @@ export namespace Works {
   export class IncipitSummary extends ROElement {
     label?: Label;
     value?: I18n;
-    //value?: MaterialSummaryValue;
-    type?: string[];
 
     constructor(data: WorkTypes.IncipitSummaryData) {
       super();
       if (data) {
         this.label = new Label(data.label);
         this.value = new I18n(data.value);
-        //this.value = new MaterialSummaryValue(data.value);
-        //this.type = data.type;
       }
     }
   }
@@ -152,6 +241,25 @@ export namespace Works {
     }
   }
 
+  export class PAE extends ROElement {
+    clef?: string;
+    keysig?: string;
+    timesig?: string;
+    key?: string;
+    data?: string;
+
+    constructor(data: WorkTypes.PAEData) {
+      super();
+      if (data) {
+        this.clef = data.clef;
+        this.keysig = data.keysig;
+        this.timesig = data.timesig;
+        this.key = data.key;
+        this.data = data.data;
+      }
+    }
+  }
+
   export class PartOf extends ROElement {
     type?: string;
     label?: Label;
@@ -164,6 +272,23 @@ export namespace Works {
         this.type = data.type;
         this.label = new Label(data.label);
         this.items = (data.items || []).map((item: WorkTypes.ItemsData) => new Item(item));
+      }
+    }
+  }
+
+  export class Properties extends ROElement {
+    clef?: string;
+    keysig?: string;
+    timesig?: string;
+    notation?: string;
+
+    constructor(data: WorkTypes.PropertiesData) {
+      super();
+      if (data) {
+        this.clef = data.clef;
+        this.keysig = data.keysig;
+        this.timesig = data.timesig;
+        this.notation = data.notation;
       }
     }
   }
@@ -198,6 +323,51 @@ export namespace Works {
     }
   }
 
+  export class Relationships extends ROElement {
+    sectionLabel?: Label;
+    items?: RelationshipsItem[];
+
+    constructor(data: WorkTypes.RelationshipsData) {
+      super();
+      if (data) {
+        this.sectionLabel = new Label(data.sectionLabel);
+        this.items = (data.items || []).map((item: WorkTypes.RelationshipsItemData) => new RelationshipsItem(item));
+      }
+    }
+  }
+
+  export class RelationshipsItem extends ROElement {
+    role?: Role;
+    relatedTo?: RelatedTo;
+
+    constructor(data: WorkTypes.RelationshipsItemData) {
+      super();
+      if (data) {
+        this.role = new Role(data.role);
+        this.relatedTo = new RelatedTo(data.relatedTo);
+      }
+    }
+  }
+
+  export class Rendered extends ROElement {
+    format?: string;
+    data?: Data;
+    url?: string;
+
+    constructor(data: WorkTypes.RenderedData) {
+      super();
+      this.hide("format");
+      this.hide("url");
+      if (data) {
+        this.format = data.format;
+        if (data.data) {
+          this.data = new Data(data.format, data.data);
+        }
+        this.url = data.url;
+      }
+    }
+  }
+
   export class Role extends ROElement {
     label?: Label;
     value?: string;
@@ -225,6 +395,20 @@ export namespace Works {
       if (data) {
         this.label = new Label(data.label);
         this.value = data.value;
+      }
+    }
+  }
+
+  export class Sources extends ROElement {
+    url?: URI;
+    totalItems?: number;
+
+    constructor(data: WorkTypes.SourcesData) {
+      super();
+      this.hide("totalItems");
+      if (data) {
+        this.url = new URI(data.url, data.totalItems.toString());
+        this.totalItems = data.totalItems;
       }
     }
   }

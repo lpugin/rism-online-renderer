@@ -1,14 +1,12 @@
-import { I18n, Label, LabelledLink, ROElement, URI } from './base';
+import { Data, I18n, Label, LabelledLink, ROElement, URI } from './base';
 /////////////////////////////
 export var Works;
 (function (Works) {
     class Work extends ROElement {
-        //externalAuthorities?: ExternalAuthorities;
-        //formOfWork?: FormOfWork;
-        //relationships?: Relationships;
         constructor(data) {
             super();
             this.hide("id");
+            this.hide("sources");
             if (data) {
                 this["@context"] = data["@context"];
                 this.labelledLink = new LabelledLink(data.label, data.id);
@@ -18,16 +16,10 @@ export var Works;
                 this.partOf = new PartOf(data.partOf);
                 this.recordHistory = new RecordHistory(data.recordHistory);
                 this.incipits = new Incipits(data.incipits);
-                /*
-                this.sourceTypes = new SourceTypes(data.sourceTypes);
-                this.contents = new Contents(data.contents);
-                this.materialGroups = new MaterialGroups(data.materialGroups);
+                this.sources = new Sources(data.sources);
+                this.externalAuthorities = new ExternalAuthorities(data.externalAuthorities);
+                this.formOfWork = new FormOfWork(data.formOfWork);
                 this.relationships = new Relationships(data.relationships);
-                this.referencesNotes = new ReferencesNotes(data.referencesNotes);
-                this.exemplars = new Exemplars(data.exemplars);
-                this.sourceItems = new SourceItems(data.sourceItems);
-                this.dates = new Dates(data.dates);
-                */
             }
         }
     }
@@ -53,6 +45,75 @@ export var Works;
         }
     }
     Works.Creator = Creator;
+    class Encodings extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("label");
+            this.hide("format");
+            this.hide("data");
+            this.hide("url");
+            if (data) {
+                this.label = new Label(data.label);
+                this.format = data.format;
+                this.data = new PAE(data.data);
+                this.url = data.url;
+            }
+        }
+    }
+    Works.Encodings = Encodings;
+    class ExternalAuthorities extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.label = new Label(data.label);
+                this.items = (data.items || []).map((item) => new ExternalAuthoritiesItem(item));
+                this.type = data.type;
+            }
+        }
+    }
+    Works.ExternalAuthorities = ExternalAuthorities;
+    class ExternalAuthoritiesItem extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("url");
+            this.hide("base");
+            this.hide("value");
+            if (data) {
+                this.url = data.url;
+                this.base = data.base;
+                this.labelledLinked = new LabelledLink(data.label, data.url);
+                this.value = data.value;
+                this.type = data.type;
+            }
+        }
+    }
+    Works.ExternalAuthoritiesItem = ExternalAuthoritiesItem;
+    class FormOfWork extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.sectionLabel = new Label(data.sectionLabel);
+                this.items = (data.items || []).map((item) => new FormOfWorkItem(item));
+                this.type = data.type;
+            }
+        }
+    }
+    Works.FormOfWork = FormOfWork;
+    class FormOfWorkItem extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("id");
+            this.hide("base");
+            this.hide("value");
+            if (data) {
+                this.id = data.id;
+                this.label = new Label(data.label);
+                this.value = data.value;
+                this.type = data.type;
+            }
+        }
+    }
+    Works.FormOfWorkItem = FormOfWorkItem;
     class Incipits extends ROElement {
         constructor(data) {
             super();
@@ -70,14 +131,16 @@ export var Works;
         constructor(data) {
             super();
             this.hide("id");
+            this.hide("properties");
             if (data) {
                 this.id = new URI(data.id);
                 this.type = data.type;
                 this.sectionLabel = new Label(data.sectionLabel);
                 this.label = new Label(data.label);
                 this.summary = (data.summary || []).map((item) => new IncipitSummary(item));
-                //this.notes = (data.notes || []).map((note: SourceTypes.NotesItemData) => new NotesItem(note));
-                //this.heldBy = new RelatedTo(data.heldBy);
+                this.rendered = (data.rendered || []).map((item) => new Rendered(item));
+                this.encodings = (data.encodings || []).map((item) => new Encodings(item));
+                this.properties = new Properties(data.properties);
             }
         }
     }
@@ -88,8 +151,6 @@ export var Works;
             if (data) {
                 this.label = new Label(data.label);
                 this.value = new I18n(data.value);
-                //this.value = new MaterialSummaryValue(data.value);
-                //this.type = data.type;
             }
         }
     }
@@ -106,6 +167,19 @@ export var Works;
         }
     }
     Works.Item = Item;
+    class PAE extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.clef = data.clef;
+                this.keysig = data.keysig;
+                this.timesig = data.timesig;
+                this.key = data.key;
+                this.data = data.data;
+            }
+        }
+    }
+    Works.PAE = PAE;
     class PartOf extends ROElement {
         constructor(data) {
             super();
@@ -118,6 +192,18 @@ export var Works;
         }
     }
     Works.PartOf = PartOf;
+    class Properties extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.clef = data.clef;
+                this.keysig = data.keysig;
+                this.timesig = data.timesig;
+                this.notation = data.notation;
+            }
+        }
+    }
+    Works.Properties = Properties;
     class RecordHistory extends ROElement {
         constructor(data) {
             super();
@@ -140,6 +226,41 @@ export var Works;
         }
     }
     Works.RelatedTo = RelatedTo;
+    class Relationships extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.sectionLabel = new Label(data.sectionLabel);
+                this.items = (data.items || []).map((item) => new RelationshipsItem(item));
+            }
+        }
+    }
+    Works.Relationships = Relationships;
+    class RelationshipsItem extends ROElement {
+        constructor(data) {
+            super();
+            if (data) {
+                this.role = new Role(data.role);
+                this.relatedTo = new RelatedTo(data.relatedTo);
+            }
+        }
+    }
+    Works.RelationshipsItem = RelationshipsItem;
+    class Rendered extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("format");
+            this.hide("url");
+            if (data) {
+                this.format = data.format;
+                if (data.data) {
+                    this.data = new Data(data.format, data.data);
+                }
+                this.url = data.url;
+            }
+        }
+    }
+    Works.Rendered = Rendered;
     class Role extends ROElement {
         constructor(data) {
             super();
@@ -164,6 +285,17 @@ export var Works;
         }
     }
     Works.Status = Status;
+    class Sources extends ROElement {
+        constructor(data) {
+            super();
+            this.hide("totalItems");
+            if (data) {
+                this.url = new URI(data.url, data.totalItems.toString());
+                this.totalItems = data.totalItems;
+            }
+        }
+    }
+    Works.Sources = Sources;
     class Summary extends ROElement {
         constructor(data) {
             super();

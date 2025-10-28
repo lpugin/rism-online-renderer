@@ -194,9 +194,10 @@ export namespace WorkTypes {
         partOf: PartOfData;
         recordHistory?: RecordHistoryData;
         incipits?: IncipitsData;
-        //externalAuthorities?: ExternalAuthoritiesData;
-        //formOfWork?: FormOfWorkData;
-        //relationships?: RelationshipsData;
+        sources?: SourcesData;
+        externalAuthorities?: ExternalAuthoritiesData;
+        formOfWork?: FormOfWorkData;
+        relationships?: RelationshipsData;
     }
 
     export interface CreatedData {
@@ -207,6 +208,40 @@ export namespace WorkTypes {
     export interface CreatorData {
         role?: RoleData;
         relatedTo?: RelatedToData;
+    }
+
+    export interface EncodingsData {
+        label?: I18nData;
+        format?: string;
+        data?: PAEData;
+        url?: string;
+    }
+
+    export interface ExternalAuthoritiesData {
+        label?: I18nData;
+        items: ExternalAuthoritiesItemData[];
+        type?: string;
+    }
+
+    export interface ExternalAuthoritiesItemData {
+        url?: string;
+        base?: string;
+        label?: I18nData;
+        value?: string;
+        type?: string;
+    }
+
+    export interface FormOfWorkData {
+        sectionLabel?: I18nData;
+        items: FormOfWorkItemData[];
+        type?: string;
+    }
+
+    export interface FormOfWorkItemData {
+        id?: string;
+        label?: I18nData;
+        value?: string;
+        type?: string;
     }
 
     export interface IncipitsData {
@@ -222,12 +257,15 @@ export namespace WorkTypes {
         sectionLabel?: I18nData;
         label?: I18nData;
         summary?: IncipitSummaryData[];
+        rendered?: RenderedData[];
+        encodings?: EncodingsData[];
+        properties?: PropertiesData;
     }
 
     export interface IncipitSummaryData {
         label?: I18nData;
         value?: I18nData;
-     }
+    }
 
     export interface ItemsData {
         relationshipType?: string;
@@ -235,10 +273,25 @@ export namespace WorkTypes {
         workNumber?: string;
     }
 
+    export interface PAEData {
+        clef?: string;
+        keysig?: string;
+        timesig?: string;
+        key?: string;
+        data?: string;
+    }
+
     export interface PartOfData {
         label?: I18nData;
         type?: string;
         items?: ItemsData[];
+    }
+
+    export interface PropertiesData {
+        clef?: string;
+        keysig?: string;
+        timesig?: string;
+        notation?: string;
     }
 
     export interface RecordHistoryData {
@@ -255,10 +308,31 @@ export namespace WorkTypes {
         status?: StatusData;
     }
 
+    export interface RelationshipsItemData {
+        role?: RoleData;
+        relatedTo?: RelatedToData;
+    }
+
+    export interface RelationshipsData {
+        sectionLabel?: I18nData;
+        items?: RelationshipsItemData[];
+    }
+
+    export interface RenderedData {
+        format?: string;
+        data?: string;
+        url?: string;
+    }
+
     export interface RoleData {
         label?: I18nData;
         value?: string;
         id?: string;
+    }
+
+    export interface SourcesData {
+        url?: string;
+        totalItems?: number;
     }
 
     export interface StatusData {

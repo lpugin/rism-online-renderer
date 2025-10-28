@@ -55,6 +55,11 @@ export class ROElement {
         text.textContent = this[member]
         container.appendChild(text);
       }
+      else if (typeof this[member] === "number") {
+        const text = document.createElement("div");
+        text.textContent = this[member].toString();
+        container.appendChild(text);
+      }
 
     }
     return container;
@@ -68,15 +73,17 @@ export class ROElement {
 
 export class URI extends ROElement {
   link: string;
+  displayText?: string;
 
-  constructor(link: string) {
+  constructor(link: string, displayText?: string) {
     super()
-    this.link = link
+    this.link = link;
+    this.displayText = displayText;
   }
 
   toHTML(): HTMLElement {
     const a = document.createElement("a");
-    a.textContent = this.link;
+    a.textContent = (this.displayText) ? this.displayText : this.link;
     a.setAttribute("href", this.link);
     a.setAttribute("target", "_blank");
     return a;
@@ -143,6 +150,27 @@ export class LabelledLink extends ROElement {
     a.appendChild(this.label.toHTML(lang));
     container.appendChild(a);
     return container;
+  }
+}
+
+export class Data extends ROElement {
+  format: string;
+  data: string;
+
+  constructor(format: string, data: string) {
+    super()
+    this.format = format
+    this.data = data;
+  }
+
+  toHTML(): HTMLElement {
+    if (this.format === "image/svg+xml") {
+      const div = document.createElement("div");
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(this.data, "image/svg+xml");
+      div.appendChild(doc.documentElement);
+      return div;
+    }
   }
 }
 

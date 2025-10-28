@@ -134,3 +134,13 @@ div.work div.incipits div.incipitsitem div.incipitsummary div:first-child {
 div.work div.incipits div.incipitsitem div.incipitsummary div.label {
   font-style: italic;
 }
+div.work div.sources {
+  display: flex;
+  flex-direction: row;
+}
+div.work div.sources div:first-child {
+  min-width: 200px;
+}
+div.work div.sources div.label {
+  font-style: italic;
+}
