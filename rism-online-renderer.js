@@ -134,6 +134,7 @@ var RISMOnline = (function (exports) {
         toHTML() {
             if (this.format === "image/svg+xml") {
                 const div = document.createElement("div");
+                div.className = this.constructor.name.toLowerCase();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(this.data, "image/svg+xml");
                 div.appendChild(doc.documentElement);
@@ -465,16 +466,6 @@ var RISMOnline = (function (exports) {
                     this.externalAuthorities = new ExternalAuthorities(data.externalAuthorities);
                     this.formOfWork = new FormOfWork(data.formOfWork);
                     this.relationships = new Relationships(data.relationships);
-                    /*
-                    this.sourceTypes = new SourceTypes(data.sourceTypes);
-                    this.contents = new Contents(data.contents);
-                    this.materialGroups = new MaterialGroups(data.materialGroups);
-                    
-                    this.referencesNotes = new ReferencesNotes(data.referencesNotes);
-                    this.exemplars = new Exemplars(data.exemplars);
-                    this.sourceItems = new SourceItems(data.sourceItems);
-                    this.dates = new Dates(data.dates);
-                    */
                 }
             }
         }
@@ -596,7 +587,6 @@ var RISMOnline = (function (exports) {
                     this.rendered = (data.rendered || []).map((item) => new Rendered(item));
                     this.encodings = (data.encodings || []).map((item) => new Encodings(item));
                     this.properties = new Properties(data.properties);
-                    //this.heldBy = new RelatedTo(data.heldBy);
                 }
             }
         }
@@ -607,8 +597,6 @@ var RISMOnline = (function (exports) {
                 if (data) {
                     this.label = new Label(data.label);
                     this.value = new I18n(data.value);
-                    //this.value = new MaterialSummaryValue(data.value);
-                    //this.type = data.type;
                 }
             }
         }

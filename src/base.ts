@@ -166,6 +166,7 @@ export class Data extends ROElement {
   toHTML(): HTMLElement {
     if (this.format === "image/svg+xml") {
       const div = document.createElement("div");
+      div.className = this.constructor.name.toLowerCase();
       const parser = new DOMParser();
       const doc = parser.parseFromString(this.data, "image/svg+xml");
       div.appendChild(doc.documentElement);

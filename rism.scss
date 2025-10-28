@@ -165,6 +165,9 @@ div.work {
         @include flex-row;
       }
     }
+    div.data {
+      max-width: 800px;
+    }
   }
 
   div.sources {
