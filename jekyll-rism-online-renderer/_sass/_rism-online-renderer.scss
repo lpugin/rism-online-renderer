@@ -1,0 +1,164 @@
+
+// Plain example
+$ro-padding: 8px !default;
+$ro-margin: 8px !default;
+$ro-header-color: #1d3557 !default;
+$ro-section-color: grey !default;
+$ro-label-text-color: white !default;
+$ro-column-width: 200px !default;
+
+// Mixins
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  div:first-child {
+    min-width: $ro-column-width;
+  }
+
+  div.label {
+    font-style: italic;
+  }
+}
+
+@mixin link() {
+  text-decoration: underline;
+}
+
+@mixin source() {
+  background-color: $ro-header-color;
+  color: $ro-label-text-color;
+  border: 1px $ro-header-color solid;
+  padding: $ro-padding;
+}
+
+@mixin section() {
+  border: 1px $ro-section-color solid;
+  margin-bottom: $ro-margin;
+  > div {
+    padding: $ro-padding;
+  }
+}
+
+@mixin section-label() {
+  background-color: $ro-section-color;
+  color: $ro-label-text-color;
+}
+
+// Styles for source
+div.ro-source {
+
+  margin-bottom: $ro-margin;
+
+  > div.ro-label,
+  > div.ro-labelledlink a div {
+    @include source;
+  }
+
+  div.ro-labelledlink a {
+    @include link;
+  }
+
+  > div:not(:empty) {
+    @include section;
+
+    > div.ro-label,
+    > div.ro-labelledlink, 
+    > div.ro-labelledlink a div {
+      @include section-label;
+    }
+
+    > div.ro-labelledlink a div {
+      @include link;
+    }
+  }
+
+  div.ro-sourcelabel {
+    padding: $ro-padding;
+  }
+
+  div.ro-recordhistory {
+    div {
+      @include flex-row;
+    }
+  }
+
+  div.ro-contents {
+    div.ro-summaryitem {
+      @include flex-row;
+    }
+  }
+
+  div.ro-materialgroups,
+  div.ro-exemplars {
+    div.ro-materialgroupitem,
+    div.ro-exemplarsitem {
+      div.ro-materialsummary {
+        @include flex-row;
+      }
+    }
+  }
+}
+
+@mixin work() {
+  background-color: $ro-header-color;
+  color: $ro-label-text-color;
+  border: 1px $ro-header-color solid;
+  padding: $ro-padding;
+}
+
+// Styles for work
+div.ro-work {
+
+  margin-bottom: $ro-margin;
+
+  > div.ro-label,
+  > div.ro-labelledlink a div {
+    @include work;
+  }
+
+  div.ro-labelledlink a {
+    @include link;
+  }
+
+  > div:not(:empty) {
+    @include section;
+
+    > div.ro-label,
+    > div.ro-labelledlink, 
+    > div.ro-labelledlink a div {
+      @include section-label;
+    }
+
+    > div.ro-labelledlink a div {
+      @include link;
+    }
+  }
+
+  div.ro-summary {
+    div.ro-i18n span {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  div.ro-recordhistory {
+    div {
+      @include flex-row;
+    }
+  }
+
+  div.ro-incipits {
+    div.ro-incipitsitem {
+      div.ro-incipitsummary {
+        @include flex-row;
+      }
+    }
+    div.ro-data {
+      max-width: 800px;
+    }
+  }
+
+  div.ro-sources {
+    @include flex-row;
+  }
+}

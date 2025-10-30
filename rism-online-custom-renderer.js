@@ -10,7 +10,7 @@ var RISMOnlineCustom = (function (exports) {
         }
         createHTMLElement() {
             const container = document.createElement("div");
-            container.className = this.constructor.name.toLowerCase();
+            container.className = "ro-" + this.constructor.name.toLowerCase();
             return container;
         }
         createHTMLTextElement(content) {
@@ -88,7 +88,7 @@ var RISMOnlineCustom = (function (exports) {
         }
         toHTML(lang) {
             const container = document.createElement("div");
-            container.className = this.constructor.name.toLowerCase();
+            container.className = "ro-" + this.constructor.name.toLowerCase();
             if (this.map) {
                 if (!lang || !this.has(lang)) {
                     lang = Object.keys(this.map)[0];
@@ -117,7 +117,7 @@ var RISMOnlineCustom = (function (exports) {
         }
         toHTML(lang) {
             const container = document.createElement("div");
-            container.className = this.constructor.name.toLowerCase();
+            container.className = "ro-" + this.constructor.name.toLowerCase();
             const a = this.id.toHTML();
             a.textContent = "";
             a.appendChild(this.label.toHTML(lang));

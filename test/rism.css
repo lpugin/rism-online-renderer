@@ -1,22 +1,11 @@
-/*
-// Bulma example (with npm install bulma)
-@import "node_modules/bulma/bulma";
-@import "node_modules/bulma/sass/utilities";
-$padding: 8px;
-$margin: 8px;
-$section-color: $info;
-$label-text-color: white;
-$source-color: $primary;
-$column-width: 200px
-*/
 div.source {
   margin: 8px;
 }
 div.source > div.label,
 div.source > div.labelledlink a div {
-  background-color: black;
+  background-color: #1d3557;
   color: white;
-  border: 1px black solid;
+  border: 1px #1d3557 solid;
   padding: 8px;
 }
 div.source div.labelledlink a {
@@ -86,9 +75,9 @@ div.work {
 }
 div.work > div.label,
 div.work > div.labelledlink a div {
-  background-color: black;
+  background-color: #1d3557;
   color: white;
-  border: 1px black solid;
+  border: 1px #1d3557 solid;
   padding: 8px;
 }
 div.work div.labelledlink a {

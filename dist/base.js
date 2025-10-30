@@ -7,7 +7,7 @@ export class ROElement {
     }
     createHTMLElement() {
         const container = document.createElement("div");
-        container.className = this.constructor.name.toLowerCase();
+        container.className = "ro-" + this.constructor.name.toLowerCase();
         return container;
     }
     createHTMLTextElement(content) {
@@ -88,7 +88,7 @@ export class I18n extends ROElement {
     }
     toHTML(lang) {
         const container = document.createElement("div");
-        container.className = this.constructor.name.toLowerCase();
+        container.className = "ro-" + this.constructor.name.toLowerCase();
         if (this.map) {
             if (!lang || !this.has(lang)) {
                 lang = Object.keys(this.map)[0];
@@ -117,7 +117,7 @@ export class LabelledLink extends ROElement {
     }
     toHTML(lang) {
         const container = document.createElement("div");
-        container.className = this.constructor.name.toLowerCase();
+        container.className = "ro-" + this.constructor.name.toLowerCase();
         const a = this.id.toHTML();
         a.textContent = "";
         a.appendChild(this.label.toHTML(lang));
@@ -134,7 +134,7 @@ export class Data extends ROElement {
     toHTML() {
         if (this.format === "image/svg+xml") {
             const div = document.createElement("div");
-            div.className = this.constructor.name.toLowerCase();
+            div.className = "ro-" + this.constructor.name.toLowerCase();
             const parser = new DOMParser();
             const doc = parser.parseFromString(this.data, "image/svg+xml");
             div.appendChild(doc.documentElement);

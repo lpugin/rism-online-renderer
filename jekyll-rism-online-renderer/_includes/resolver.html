@@ -1,0 +1,15 @@
+<script src="{{ '/rism-online-renderer/js/rism-online-renderer.js' | relative_url }}"></script>
+
+<div id="work"></div>
+
+<script>
+    function getParameterByName( name )
+    {
+        var match = RegExp( '[?&]' + name + '=([^&]*)' ).exec( window.location.search );
+        return match && decodeURIComponent( match[1].replace( /\+/g, ' ' ) );
+    }
+
+    let id = getParameterByName( 'id' );
+    const workRenderer = new RISMOnline.WorkRenderer( id.replace(/^rism:(.*)$/i, "https://rism.online/$1"), 'work' );
+    workRenderer.render( '{{ site.active_lang }}' );
+</script>
