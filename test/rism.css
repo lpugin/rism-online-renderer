@@ -1,138 +1,138 @@
-div.source {
-  margin: 8px;
+div.ro-source {
+  margin-bottom: 8px;
 }
-div.source > div.label,
-div.source > div.labelledlink a div {
+div.ro-source > div.ro-label,
+div.ro-source > div.ro-labelledlink a div {
   background-color: #1d3557;
   color: white;
   border: 1px #1d3557 solid;
   padding: 8px;
 }
-div.source div.labelledlink a {
+div.ro-source div.ro-labelledlink a {
   text-decoration: underline;
 }
-div.source > div:not(:empty) {
+div.ro-source > div:not(:empty) {
   border: 1px grey solid;
   margin-bottom: 8px;
 }
-div.source > div:not(:empty) > div {
+div.ro-source > div:not(:empty) > div {
   padding: 8px;
 }
-div.source > div:not(:empty) > div.label,
-div.source > div:not(:empty) > div.labelledlink,
-div.source > div:not(:empty) > div.labelledlink a div {
+div.ro-source > div:not(:empty) > div.ro-label,
+div.ro-source > div:not(:empty) > div.ro-labelledlink,
+div.ro-source > div:not(:empty) > div.ro-labelledlink a div {
   background-color: grey;
   color: white;
 }
-div.source > div:not(:empty) > div.labelledlink a div {
+div.ro-source > div:not(:empty) > div.ro-labelledlink a div {
   text-decoration: underline;
 }
-div.source div.sourcelabel {
+div.ro-source div.ro-sourcelabel {
   padding: 8px;
 }
-div.source div.recordhistory div {
+div.ro-source div.ro-recordhistory div {
   display: flex;
   flex-direction: row;
 }
-div.source div.recordhistory div div:first-child {
+div.ro-source div.ro-recordhistory div div:first-child {
   min-width: 200px;
 }
-div.source div.recordhistory div div.label {
+div.ro-source div.ro-recordhistory div div.label {
   font-style: italic;
 }
-div.source div.contents div.summaryitem {
+div.ro-source div.ro-contents div.ro-summaryitem {
   display: flex;
   flex-direction: row;
 }
-div.source div.contents div.summaryitem div:first-child {
+div.ro-source div.ro-contents div.ro-summaryitem div:first-child {
   min-width: 200px;
 }
-div.source div.contents div.summaryitem div.label {
+div.ro-source div.ro-contents div.ro-summaryitem div.label {
   font-style: italic;
 }
-div.source div.materialgroups div.materialgroupitem div.materialsummary,
-div.source div.materialgroups div.exemplarsitem div.materialsummary,
-div.source div.exemplars div.materialgroupitem div.materialsummary,
-div.source div.exemplars div.exemplarsitem div.materialsummary {
+div.ro-source div.ro-materialgroups div.ro-materialgroupitem div.ro-materialsummary,
+div.ro-source div.ro-materialgroups div.ro-exemplarsitem div.ro-materialsummary,
+div.ro-source div.ro-exemplars div.ro-materialgroupitem div.ro-materialsummary,
+div.ro-source div.ro-exemplars div.ro-exemplarsitem div.ro-materialsummary {
   display: flex;
   flex-direction: row;
 }
-div.source div.materialgroups div.materialgroupitem div.materialsummary div:first-child,
-div.source div.materialgroups div.exemplarsitem div.materialsummary div:first-child,
-div.source div.exemplars div.materialgroupitem div.materialsummary div:first-child,
-div.source div.exemplars div.exemplarsitem div.materialsummary div:first-child {
+div.ro-source div.ro-materialgroups div.ro-materialgroupitem div.ro-materialsummary div:first-child,
+div.ro-source div.ro-materialgroups div.ro-exemplarsitem div.ro-materialsummary div:first-child,
+div.ro-source div.ro-exemplars div.ro-materialgroupitem div.ro-materialsummary div:first-child,
+div.ro-source div.ro-exemplars div.ro-exemplarsitem div.ro-materialsummary div:first-child {
   min-width: 200px;
 }
-div.source div.materialgroups div.materialgroupitem div.materialsummary div.label,
-div.source div.materialgroups div.exemplarsitem div.materialsummary div.label,
-div.source div.exemplars div.materialgroupitem div.materialsummary div.label,
-div.source div.exemplars div.exemplarsitem div.materialsummary div.label {
+div.ro-source div.ro-materialgroups div.ro-materialgroupitem div.ro-materialsummary div.label,
+div.ro-source div.ro-materialgroups div.ro-exemplarsitem div.ro-materialsummary div.label,
+div.ro-source div.ro-exemplars div.ro-materialgroupitem div.ro-materialsummary div.label,
+div.ro-source div.ro-exemplars div.ro-exemplarsitem div.ro-materialsummary div.label {
   font-style: italic;
 }
 
-div.work {
-  margin: 8px;
+div.ro-work {
+  margin-bottom: 8px;
 }
-div.work > div.label,
-div.work > div.labelledlink a div {
+div.ro-work > div.ro-label,
+div.ro-work > div.ro-labelledlink a div {
   background-color: #1d3557;
   color: white;
   border: 1px #1d3557 solid;
   padding: 8px;
 }
-div.work div.labelledlink a {
+div.ro-work div.ro-labelledlink a {
   text-decoration: underline;
 }
-div.work > div:not(:empty) {
+div.ro-work > div:not(:empty) {
   border: 1px grey solid;
   margin-bottom: 8px;
 }
-div.work > div:not(:empty) > div {
+div.ro-work > div:not(:empty) > div {
   padding: 8px;
 }
-div.work > div:not(:empty) > div.label,
-div.work > div:not(:empty) > div.labelledlink,
-div.work > div:not(:empty) > div.labelledlink a div {
+div.ro-work > div:not(:empty) > div.ro-label,
+div.ro-work > div:not(:empty) > div.ro-labelledlink,
+div.ro-work > div:not(:empty) > div.ro-labelledlink a div {
   background-color: grey;
   color: white;
 }
-div.work > div:not(:empty) > div.labelledlink a div {
+div.ro-work > div:not(:empty) > div.ro-labelledlink a div {
   text-decoration: underline;
 }
-div.work div.summary div.i18n span {
+div.ro-work div.ro-summary div.ro-i18n span {
   display: flex;
   flex-direction: column;
 }
-div.work div.recordhistory div {
+div.ro-work div.ro-recordhistory div {
   display: flex;
   flex-direction: row;
 }
-div.work div.recordhistory div div:first-child {
+div.ro-work div.ro-recordhistory div div:first-child {
   min-width: 200px;
 }
-div.work div.recordhistory div div.label {
+div.ro-work div.ro-recordhistory div div.label {
   font-style: italic;
 }
-div.work div.incipits div.incipitsitem div.incipitsummary {
+div.ro-work div.ro-incipits div.ro-incipitsitem div.ro-incipitsummary {
   display: flex;
   flex-direction: row;
 }
-div.work div.incipits div.incipitsitem div.incipitsummary div:first-child {
+div.ro-work div.ro-incipits div.ro-incipitsitem div.ro-incipitsummary div:first-child {
   min-width: 200px;
 }
-div.work div.incipits div.incipitsitem div.incipitsummary div.label {
+div.ro-work div.ro-incipits div.ro-incipitsitem div.ro-incipitsummary div.label {
   font-style: italic;
 }
-div.work div.incipits div.data {
+div.ro-work div.ro-incipits div.ro-data {
   max-width: 800px;
 }
-div.work div.sources {
+div.ro-work div.ro-sources {
   display: flex;
   flex-direction: row;
 }
-div.work div.sources div:first-child {
+div.ro-work div.ro-sources div:first-child {
   min-width: 200px;
 }
-div.work div.sources div.label {
+div.ro-work div.ro-sources div.label {
   font-style: italic;
 }

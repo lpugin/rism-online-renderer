@@ -3,7 +3,7 @@
 TypeScript code for rendering JSON-LD pulled from RISM Online
 
 See:
-* https://lpugin.github.io/rism-online-renderer/test/index.html
+* https://rism-digital.github.io/rism-online-renderer/test/index.html
 
 ## Using it
 
