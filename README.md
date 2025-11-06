@@ -5,19 +5,22 @@ TypeScript code for rendering JSON-LD pulled from RISM Online
 See:
 * https://rism-digital.github.io/rism-online-renderer/test/index.html
 
+It can be used for sources (work in progress) and works (fully implemented)
+
 ## Using it
 
 ```html
-<script src="../rism-online-renderer.js"></script>
+<div id="json-ld-container"></div>
+<script src="rism-online-renderer.js"></script>
 <script>
-  const renderer = new RISMOnline.Renderer( 'https://rism.online/sources/453012854', 'json-ld-container' );
+  const renderer = new RISMOnline.WorkRenderer( 'https://rism.online/sources/453012854', 'json-ld-container' );
   renderer.render( 'en' );
 </script>
 ```
 
 Where `json-ld-container` is the `@id` of a `div` to include the rendering.
 
-The CSS generated from `rism.scss` should be included.
+The CSS generated from `rism-online-renderer.scss` should be included.
 
 ## Building
 
